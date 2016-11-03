@@ -83,6 +83,7 @@ def update_tasks_via_js():
         task = db.session.query(models.Task).get(update['id'])
         task.rank = update['rank']
         task.status = update['status']
+        task.description = update['description']
         db.session.merge(task)
     db.session.commit()
     return 'success'

@@ -82,9 +82,17 @@ h1, h2, h3, h4, h5, h6 {
       border-top: 1px solid #eee;
       border-left: 1px solid #eee;
       border-right: 1px solid #eee;
+
       span {
         position: relative;
         left: 10px;
+
+        input.task-being-edited {
+          position: relative;
+          top: -2px;
+          border: 1px solid @color-pink;
+          width: 90%;
+        }
       }
     }
 

@@ -82,6 +82,12 @@ h6 {
   position: relative;
   left: 10px;
 }
+#index-page ul li span input.task-being-edited {
+  position: relative;
+  top: -2px;
+  border: 1px solid #faafa6;
+  width: 90%;
+}
 #index-page ul#todo {
   border-bottom: 1px solid #faafa6;
 }
