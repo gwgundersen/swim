@@ -14,10 +14,27 @@ body {
   font-family: @font-family-base;
 }
 
+.btn {
+  border: none;
+}
+
+.btn.btn-primary {
+  background-color: @color-light-brown;
+  &:active {
+    background-color: @color-teal;
+  }
+}
+
 /* Structural elements.
  * -------------------- */
 #nav {
-  background-color: blue;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a29e81+0,548d76+100 */
+  background: #a29e81; /* Old browsers */
+  background: -moz-linear-gradient(top, #a29e81 0%, #548d76 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #a29e81 0%,#548d76 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #a29e81 0%,#548d76 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a29e81', endColorstr='#548d76',GradientType=0 ); /* IE6-9 */
+  color: white;
 
   h1 {
     margin-top: 10px;
@@ -40,35 +57,69 @@ body {
 
 #index-page {
   h2 {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
-    text-decoration: underline;
   }
   ul {
     /* Required so that users can drag items into empty lists. */
-    min-height: 200px;
+    min-height: @dim-win-height;
+    border-bottom: 1px solid #eee;
 
     li {
-      background: green;
+      background-color: #f9f9f9;
       height: @dim-win-height;
-      padding: 5px;
+      padding: 10px;
+      font-weight: bold;
+      border-top: 1px solid #eee;
+      border-left: 1px solid #eee;
+      border-right: 1px solid #eee;
+      span {
+        position: relative;
+        left: 10px;
+      }
+    }
 
-      &:nth-child(odd) {
-        background: red;
+    &#todo {
+      border-bottom: 1px solid @color-pink;
+
+      li {
+        background-color: #fddeda;
+        border-top: 1px solid @color-pink;
+        border-left: 1px solid @color-pink;
+        border-right: 1px solid @color-pink;
+      }
+    }
+
+    &#done {
+      li {
+        span {
+          text-decoration: line-through;
+        }
       }
     }
   }
+  #controls {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 10px;
+  }
 }
 
-/* Sortable jQuery plugin overrides.
- */
+#wins-create-page {
+  input[type="text"] {
+    width: 350px;
+  }
+}
+
+/* Plugin overrides.
+ * ----------------- */
 
 .sortable-dragging {
-  border: 3px solid purple;
+  border: 3px solid @color-light-brown !important;
 }
 
 .sortable-placeholder {
   background-color: white !important;
-  border: 3px solid orange;
+  border: 2px dotted #ccc !important;
   height: @dim-win-height;
 }

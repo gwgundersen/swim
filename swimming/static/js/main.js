@@ -7,7 +7,6 @@ $(function() {
     /* Save new ordering for small wins.
      */
     function save_wins_status(evt) {
-        console.log('wins changed');
         var updates = [];
         $('#index-page ul').each(function(i, ul) {
             $(ul).find('li').each(function(i, li) {
@@ -17,6 +16,8 @@ $(function() {
                     rank: i
                 });
             });
+
+            updateStyles(ul);
         });
 
         $.ajax({
@@ -29,8 +30,8 @@ $(function() {
         })
     }
 
-    $('#wins-completed-page table').DataTable({
-        bSort: false
-    });
+    function updateStyles(ul) {
+        $(ul).find('li').removeClass('last').last().addClass('last');
+    }
 
 });

@@ -45,18 +45,18 @@
                     </ul>
                 </div>
             </div>
-            <div>
+            <div id="controls">
                 <select name="status">
                     {% for action in actions %}
                         <option value="{{ action }}">{{ action|capitalize }}</option>
                     {% endfor %}
                 </select>
-                <input type="submit" class="btn"/>
+                <input type="submit" class="btn" value="Update"/>
             </div>
         </form>
         <div>
-            <a href="/swimming/win/create" class="btn btn-primary">Create small win</a>
-            <a href="/swimming/win" class="btn btn-primary">Completed small wins</a>
+            <a href="/swimming/win/create" class="btn btn-primary">Create</a>
+            <a href="/swimming/win" class="btn btn-primary">Completed</a>
         </div>
     </div>
 </div>
