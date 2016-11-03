@@ -1,12 +1,14 @@
 $(function() {
 
-    sortable('ul#todo, ul#queued, ul#done', {
-        connectWith: '.connected'
-    })[0].addEventListener('sortupdate', save_wins_status);
+    if ($('#index-page').length) {
+        sortable('ul#todo, ul#queued, ul#done', {
+            connectWith: '.connected'
+        })[0].addEventListener('sortupdate', save_tasks_updates);
+    }
 
-    /* Save new ordering for small wins.
+    /* Save new properties for small tasks.
      */
-    function save_wins_status(evt) {
+    function save_tasks_updates(evt) {
         var updates = [];
         $('#index-page ul').each(function(i, ul) {
             $(ul).find('li').each(function(i, li) {
@@ -21,7 +23,7 @@ $(function() {
         });
 
         $.ajax({
-            url: '/swimming/win/update_rank',
+            url: '/swim/task/update_rank',
             type: 'POST',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({

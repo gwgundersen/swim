@@ -5,7 +5,7 @@ from ConfigParser import ConfigParser
 
 
 config = ConfigParser()
-config.read('swimming/config.ini')
+config.read('swim/config.ini')
 
 db_connection_args = {
     'user': config.get('db', 'user'),

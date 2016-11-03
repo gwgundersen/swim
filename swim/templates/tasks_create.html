@@ -7,12 +7,14 @@
 
 {% include "nav.html" %}
 
-<div id="wins-create-page" class="page-wrapper">
+<div id="task-create-page" class="page-wrapper">
     <div class="page container">
         <h1>Create Task</h1>
-        <form action="/swimming/win/create" method="post" class="form-inline">
+        <form action="/swim/task/create" method="post" class="form-inline">
             <div class="form-group">
-                <input type="text" name="task" placeholder="Something concrete, immediate, and controllable..." class="form-control"/>
+                <input type="text" name="description"
+                       placeholder="Something concrete, immediate, and controllable..."
+                       class="form-control"/>
                 <input type="submit" class="btn" value="Create"/>
             </div>
         </form>

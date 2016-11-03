@@ -9,15 +9,15 @@
 
 <div id="index-page" class="page-wrapper">
     <div class="page container">
-        <form action="/swimming/win/update" method="post">
+        <form action="/swim/task/update" method="post">
             <div class="row">
                 <div class="col-md-4">
                     <h2>Todo</h2>
                     <ul class="list-unstyled connected" id="todo">
-                        {% for win in todo %}
+                        {% for task in todo %}
                         <li>
-                            <input type="checkbox" name="{{ win.id }}"/>
-                            <span>{{ win.task }}</span>
+                            <input type="checkbox" name="{{ task.id }}"/>
+                            <span>{{ task.description }}</span>
                         </li>
                         {% endfor %}
                     </ul>
@@ -25,10 +25,10 @@
                 <div class="col-md-4">
                     <h2>Queued</h2>
                     <ul class="list-unstyled connected" id="queued">
-                        {% for win in queued %}
+                        {% for task in queued %}
                         <li>
-                            <input type="checkbox" name="{{ win.id }}"/>
-                            <span>{{ win.task }}</span>
+                            <input type="checkbox" name="{{ task.id }}"/>
+                            <span>{{ task.description }}</span>
                         </li>
                         {% endfor %}
                     </ul>
@@ -36,10 +36,10 @@
                 <div class="col-md-4">
                     <h2>Done</h2>
                     <ul class="list-unstyled connected" id="done">
-                        {% for win in done %}
+                        {% for task in done %}
                         <li>
-                            <input type="checkbox" name="{{ win.id }}"/>
-                            <span>{{ win.task }}</span>
+                            <input type="checkbox" name="{{ task.id }}"/>
+                            <span>{{ task.description }}</span>
                         </li>
                         {% endfor %}
                     </ul>
@@ -55,8 +55,8 @@
             </div>
         </form>
         <div>
-            <a href="/swimming/win/create" class="btn btn-primary">Create</a>
-            <a href="/swimming/win" class="btn btn-primary">Completed</a>
+            <a href="/swim/task/create" class="btn btn-primary">Create</a>
+            <a href="/swim/task" class="btn btn-primary">Completed</a>
         </div>
     </div>
 </div>

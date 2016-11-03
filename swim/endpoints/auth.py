@@ -3,8 +3,8 @@
 from flask import g, Blueprint, request, redirect, render_template, url_for
 from flask.ext.login import login_user, logout_user, login_required
 
-from swimming import models
-from swimming.config import config
+from swim import models
+from swim.config import config
 
 
 auth_blueprint = Blueprint('auth',

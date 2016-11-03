@@ -4,7 +4,7 @@ from flask import Flask, g, session as flask_session
 from flask.ext.login import LoginManager, current_user
 from flask.ext.sqlalchemy import SQLAlchemy
 
-from swimming.config import config
+from swim.config import config
 
 
 """ Database configuration and app initialization
@@ -13,7 +13,7 @@ from swimming.config import config
 db = SQLAlchemy()
 
 # Import models. They must be interpreted before creating the database.
-from swimming import models
+from swim import models
 
 app = Flask(__name__,
             static_url_path="%s/static" % config.get("url", "base"),
@@ -36,7 +36,7 @@ with app.app_context():
 
 """ URL configuration
     -----------------------------------------------------------------------"""
-app.config.base_tag_url = "/swimming/"
+app.config.base_tag_url = "/swim/"
 
 
 """ Debugging
@@ -49,10 +49,10 @@ app.config["PROPAGATE_EXCEPTIONS"] = True
 
 """ Server endpoints
     -----------------------------------------------------------------------"""
-from swimming import endpoints
+from swim import endpoints
 app.register_blueprint(endpoints.auth_blueprint)
 app.register_blueprint(endpoints.index_blueprint)
-app.register_blueprint(endpoints.win_blueprint)
+app.register_blueprint(endpoints.task_blueprint)
 
 
 """ Login session management

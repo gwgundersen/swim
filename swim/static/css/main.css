@@ -87,8 +87,11 @@ body {
   padding-top: 15px;
   margin-top: 10px;
 }
-#wins-create-page input[type="text"] {
+#task-create-page input[type="text"] {
   width: 350px;
+}
+#tasks-completed-page table {
+  font-size: 13px;
 }
 /* Plugin overrides.
  * ----------------- */

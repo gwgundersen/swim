@@ -5,7 +5,7 @@ import uuid
 
 from sqlalchemy.orm.exc import NoResultFound
 
-from swimming import db
+from swim import db
 
 
 class User(db.Model):

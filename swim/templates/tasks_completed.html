@@ -7,10 +7,10 @@
 
 {% include "nav.html" %}
 
-<div id="wins-completed-page" class="page-wrapper">
+<div id="tasks-completed-page" class="page-wrapper">
     <div class="page container">
-        <h1>Completed wins</h1>
-        <form action="/swimming/win/update" method="post">
+        <h1>Completed tasks</h1>
+        <form action="/swim/task/update" method="post">
             <table class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
@@ -20,12 +20,12 @@
                         <th></th>
                     </tr>
                 </thead>
-                {% for win in wins %}
+                {% for task in tasks %}
                     <tr>
-                        <td>{{ win.task }}</td>
-                        <td>{{ win.status }}</td>
-                        <td>{{ win.date_ }}</td>
-                        <td><input type="checkbox" name="{{ win.id }}"/></td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.status }}</td>
+                        <td>{{ task.date_ }}</td>
+                        <td><input type="checkbox" name="{{ task.id }}"/></td>
                     </tr>
                 {% endfor %}
             </table>
