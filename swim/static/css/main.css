@@ -12,6 +12,7 @@ body {
 }
 .btn {
   border: none;
+  font-family: 'Roboto' !important;
 }
 .btn.btn-primary {
   background-color: #a29e81;
@@ -19,10 +20,18 @@ body {
 .btn.btn-primary:active {
   background-color: #548d76;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto';
+}
 /* Structural elements.
  * -------------------- */
 #nav {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a29e81+0,548d76+100 */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/@color-light-brown+0,548d76+100 */
   background: #a29e81;
   /* Old browsers */
   background: -moz-linear-gradient(top, #a29e81 0%, #548d76 100%);
@@ -31,7 +40,7 @@ body {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #a29e81 0%, #548d76 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a29e81', endColorstr='#548d76', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@color-light-brown', endColorstr='@color-teal', GradientType=0);
   /* IE6-9 */
   color: white;
 }
@@ -43,6 +52,9 @@ body {
 #nav h1 a:active {
   color: white;
   text-decoration: none;
+}
+#nav p {
+  font-family: 'Roboto';
 }
 /* Content that spans pages.
  * ------------------------- */

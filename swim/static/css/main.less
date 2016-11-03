@@ -16,6 +16,7 @@ body {
 
 .btn {
   border: none;
+  font-family: @font-family-accent !important;
 }
 
 .btn.btn-primary {
@@ -25,15 +26,19 @@ body {
   }
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: @font-family-accent;
+}
+
 /* Structural elements.
  * -------------------- */
 #nav {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a29e81+0,548d76+100 */
-  background: #a29e81; /* Old browsers */
-  background: -moz-linear-gradient(top, #a29e81 0%, #548d76 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #a29e81 0%,#548d76 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #a29e81 0%,#548d76 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a29e81', endColorstr='#548d76',GradientType=0 ); /* IE6-9 */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/@color-light-brown+0,548d76+100 */
+  background: @color-light-brown; /* Old browsers */
+  background: -moz-linear-gradient(top, @color-light-brown 0%, @color-teal 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, @color-light-brown 0%,@color-teal 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, @color-light-brown 0%,@color-teal 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@color-light-brown', endColorstr='@color-teal',GradientType=0 ); /* IE6-9 */
   color: white;
 
   h1 {
@@ -45,6 +50,10 @@ body {
       color: white;
       text-decoration: none;
     }
+  }
+
+  p {
+    font-family: @font-family-accent;
   }
 }
 
