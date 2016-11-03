@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC="">
+<html>
+
+{% include "head.html" %}
+
+<body>
+
+{% include "nav.html" %}
+
+<div id="wins-create" class="page-wrapper">
+    <div class="page container">
+        <h1>Create win</h1>
+        <p>"A small win is a concrete, complete, implemented outcome of moderate importance."</p>
+        <form action="/swimming/win/create" method="post" class="form-inline">
+            <div class="form-group">
+                <input type="text" name="task" placeholder="Something concrete..." class="form-control"/>
+                <input type="submit" class="btn" value="Create"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

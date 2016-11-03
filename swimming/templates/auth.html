@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC="">
+<html>
+
+{% include "head.html" %}
+
+<body>
+
+<div id="auth-page" class="page-wrapper">
+    <div class="page">
+        <div>
+            <form action="/swimming/auth/login" method="post">
+                <input type="text"
+                       class="form-control"
+                       name="username"
+                       placeholder="Username"
+                       autocomplete="off">
+                <input type="password"
+                       class="form-control"
+                       name="password"
+                       placeholder="Password"
+                       autocomplete="off">
+                <button type="submit" class="btn">Log in</button>
+            </form>
+        </div>
+        <div id="logout-section">
+            <form action="/swimming/auth/logout" method="post">
+                <button type="submit" class="btn">Log out</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

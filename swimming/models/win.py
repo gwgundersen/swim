@@ -1,0 +1,38 @@
+"""Represent a small win."""
+
+import datetime
+from sqlalchemy.sql import func
+
+from swimming import db
+
+
+class Win(db.Model):
+
+    __tablename__ = 'win'
+
+    id      = db.Column(db.Integer, primary_key=True)
+    task    = db.Column(db.String(255))
+    status  = db.Column(db.String(255))
+    date_   = db.Column(db.Date)
+    user_fk = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    rank    = db.Column(db.Integer)
+
+    user    = db.relationship('User', backref='wins')
+
+    def __init__(self, task, user):
+        """Create a new small win."""
+        self.task = task
+        self.user = user
+        self.date_ = datetime.datetime.now()
+        self.status = 'todo'
+
+        max_ = db.session.query(func.max(Win.rank)).one()[0]
+        # Place element at bottom of to-do list.
+        self.rank = max_ + 1
+
+
+    @classmethod
+    def update_actions(cls):
+        """Canonical list of valid statuses for user interface components.
+        """
+        return ['todo', 'done', 'queued', 'deleted']

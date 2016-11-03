@@ -1,0 +1,57 @@
+/* Reset
+ * ----- */
+html,
+body {
+  margin: 0;
+  font-size: 13px;
+}
+/* Tag and general class selectors.
+ * -------------------------------- */
+body {
+  font-family: arial, sans-serif;
+}
+/* Structural elements.
+ * -------------------- */
+#nav {
+  background-color: blue;
+}
+#nav h1 {
+  margin-top: 10px;
+}
+#nav h1 a,
+#nav h1 a:hover,
+#nav h1 a:active {
+  color: white;
+  text-decoration: none;
+}
+/* Content that spans pages.
+ * ------------------------- */
+/* Pages.
+ * ------ */
+#index-page h2 {
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+#index-page ul {
+  /* Required so that users can drag items into empty lists. */
+  min-height: 200px;
+}
+#index-page ul li {
+  background: green;
+  height: 40px;
+  padding: 5px;
+}
+#index-page ul li:nth-child(odd) {
+  background: red;
+}
+/* Sortable jQuery plugin overrides.
+ */
+.sortable-dragging {
+  border: 3px solid purple;
+}
+.sortable-placeholder {
+  background-color: white !important;
+  border: 3px solid orange;
+  height: 40px;
+}
