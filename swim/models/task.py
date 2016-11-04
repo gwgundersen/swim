@@ -10,13 +10,14 @@ class Task(db.Model):
 
     __tablename__ = 'task'
 
-    id          = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(255))
-    status      = db.Column(db.String(255))
-    date_       = db.Column(db.Date)
-    user_fk     = db.Column(db.Integer, db.ForeignKey('user.id'),
-                            nullable=True)
-    rank        = db.Column(db.Integer)
+    id             = db.Column(db.Integer, primary_key=True)
+    description    = db.Column(db.String(255))
+    status         = db.Column(db.String(255))
+    date_created   = db.Column(db.Date)
+    date_completed = db.Column(db.Date)
+    user_fk        = db.Column(db.Integer, db.ForeignKey('user.id'),
+                               nullable=True)
+    rank           = db.Column(db.Integer)
 
     user = db.relationship('User', backref='tasks')
 
@@ -24,7 +25,7 @@ class Task(db.Model):
         """Create a new small win."""
         self.description = description
         self.user = user
-        self.date_ = datetime.datetime.now()
+        self.date_created = datetime.datetime.now()
         self.status = 'todo'
 
         max_ = db.session.query(func.max(Task.rank)).one()[0]

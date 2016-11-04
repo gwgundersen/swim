@@ -1,5 +1,6 @@
 """CRUD actions for tasks."""
 
+import datetime
 from flask import g, Blueprint, request, redirect, render_template, url_for
 from flask.ext.login import current_user, login_required
 
@@ -21,7 +22,7 @@ def render_all_tasks_page():
     tasks = db.session.query(models.Task)\
         .filter(models.Task.user_fk == current_user.id)\
         .filter(models.Task.status == 'done')\
-        .order_by(models.Task.date_.desc())
+        .order_by(models.Task.date_completed.desc())
     actions = models.Task.update_actions()
     return render_template('tasks_completed.html', tasks=tasks, actions=actions)
 
@@ -64,6 +65,8 @@ def update_tasks_via_form():
     else:
         for task in tasks:
             task.status = status
+            if status == 'done':
+                task.date_completed = datetime.datetime.now()
             db.session.merge(task)
         db.session.commit()
 
@@ -82,7 +85,10 @@ def update_tasks_via_js():
     for update in request.json.get('updates'):
         task = db.session.query(models.Task).get(update['id'])
         task.rank = update['rank']
-        task.status = update['status']
+        status = update['status']
+        task.status = status
+        if status == 'done':
+            task.date_completed = datetime.datetime.now()
         task.description = update['description']
         db.session.merge(task)
     db.session.commit()
