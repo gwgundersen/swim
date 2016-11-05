@@ -22,9 +22,13 @@ def render_all_tasks_page():
     tasks = db.session.query(models.Task)\
         .filter(models.Task.user_fk == current_user.id)\
         .filter(models.Task.status == 'done')\
-        .order_by(models.Task.date_completed.desc())
+        .order_by(models.Task.date_completed.desc())\
+        .all()
     actions = models.Task.update_actions()
-    return render_template('tasks_completed.html', tasks=tasks, actions=actions)
+    total_tasks_completed = len(tasks)
+    return render_template('tasks_completed.html', tasks=tasks,
+                           actions=actions,
+                           total_tasks_completed=total_tasks_completed)
 
 
 @login_required
