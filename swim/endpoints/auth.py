@@ -22,7 +22,7 @@ def login():
     if registered_user is None:
         logout_user()
         return render_template('auth.html')
-    login_user(registered_user)
+    login_user(registered_user, remember=True)
     return redirect(url_for('index.render_index_page'))
 
 
