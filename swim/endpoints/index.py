@@ -28,11 +28,10 @@ def render_index_page():
         .order_by(models.Task.rank)\
         .all()
 
-    current_time = datetime.datetime.utcnow()
-    one_day_ago = current_time - datetime.timedelta(days=1)
+    current_time = datetime.datetime.utcnow().date()
     done = db.session.query(models.Task)\
         .filter(models.Task.status == 'done')\
-        .filter(models.Task.date_completed > one_day_ago)\
+        .filter(models.Task.date_completed == current_time)\
         .order_by(models.Task.rank)\
         .all()
 
