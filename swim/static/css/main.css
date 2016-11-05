@@ -70,6 +70,10 @@ h6 {
 }
 /* Pages.
  * ------ */
+#index-page #menu {
+  padding: 15px 0;
+  background-color: #eee;
+}
 #index-page h2 {
   font-size: 20px;
   font-weight: bold;

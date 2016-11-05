@@ -74,10 +74,17 @@ h1, h2, h3, h4, h5, h6 {
 /* Pages.
  * ------ */
 #index-page {
+
+  #menu {
+    padding: 15px 0;
+    background-color: #eee;
+  }
+
   h2 {
     font-size: 20px;
     font-weight: bold;
   }
+
   ul {
     /* Required so that users can drag items into empty lists. */
     min-height: @dim-win-height;
@@ -124,6 +131,7 @@ h1, h2, h3, h4, h5, h6 {
       }
     }
   }
+
   #controls {
     border-top: 1px solid #eee;
     padding-top: 15px;

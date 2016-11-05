@@ -8,6 +8,12 @@
 {% include "nav.html" %}
 
 <div id="index-page" class="page-wrapper">
+    <div id="menu" class="container-full">
+        <div class="container">
+            <a href="/swim/task/create" class="btn btn-primary">Create</a>
+            <a href="/swim/task" class="btn btn-primary">Completed</a>
+        </div>
+    </div>
     <div class="page container">
         <form action="/swim/task/update" method="post">
             <div class="row">
@@ -54,10 +60,6 @@
                 <input type="submit" class="btn" value="Update"/>
             </div>
         </form>
-        <div>
-            <a href="/swim/task/create" class="btn btn-primary">Create</a>
-            <a href="/swim/task" class="btn btn-primary">Completed</a>
-        </div>
     </div>
 </div>
 
