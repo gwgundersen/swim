@@ -27,6 +27,7 @@ h4,
 h5,
 h6 {
   font-family: 'Roboto';
+  margin-top: 0;
 }
 /* Structural elements.
  * -------------------- */
@@ -44,20 +45,29 @@ h6 {
   /* IE6-9 */
   color: white;
 }
-#nav h1 {
-  margin-top: 10px;
-}
 #nav h1 a,
+#nav p a,
 #nav h1 a:hover,
-#nav h1 a:active {
+#nav p a:hover,
+#nav h1 a:active,
+#nav p a:active {
   color: white;
   text-decoration: none;
 }
-#nav p {
+#nav h1 {
+  margin-top: 10px;
+}
+#nav p a {
   font-family: 'Roboto';
+  position: relative;
+  top: 28px;
+  left: 15px;
 }
 /* Content that spans pages.
  * ------------------------- */
+.page {
+  margin: 30px auto;
+}
 /* Pages.
  * ------ */
 #index-page h2 {
@@ -108,8 +118,15 @@ h6 {
 #task-create-page input[type="text"] {
   width: 350px;
 }
+#task-create-page p {
+  font-size: 16px;
+  margin: 30px 0;
+}
 #tasks-completed-page table {
   font-size: 13px;
+}
+#auth-page input {
+  margin-bottom: 10px;
 }
 /* Plugin overrides.
  * ----------------- */

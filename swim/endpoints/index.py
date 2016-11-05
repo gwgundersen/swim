@@ -1,7 +1,7 @@
 """Render landing page."""
 
 import datetime
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template
 from flask.ext.login import login_required
 
 from swim import db, models
@@ -13,8 +13,8 @@ index_blueprint = Blueprint('index',
                             url_prefix=config.get('url', 'base'))
 
 
-@login_required
 @index_blueprint.route('/', methods=['GET'])
+@login_required
 def render_index_page():
     """Render index page.
     """

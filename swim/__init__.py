@@ -1,6 +1,6 @@
 """Configure and start the web server."""
 
-from flask import Flask, g, session as flask_session
+from flask import Flask, g, session as flask_session, render_template
 from flask.ext.login import LoginManager, current_user
 from flask.ext.sqlalchemy import SQLAlchemy
 
@@ -8,7 +8,7 @@ from swim.config import config
 
 
 """ Database configuration and app initialization
-    -----------------------------------------------------------------------"""
+    ------------------------------------------------------------------------"""
 # Create db first. Models all import this.
 db = SQLAlchemy()
 
@@ -35,12 +35,12 @@ with app.app_context():
 
 
 """ URL configuration
-    -----------------------------------------------------------------------"""
+    ------------------------------------------------------------------------"""
 app.config.base_tag_url = "/swim/"
 
 
 """ Debugging
-    -----------------------------------------------------------------------"""
+    ------------------------------------------------------------------------"""
 # It's impossible to debug a 500 error in production without seeing an error
 # message.
 app.config["DEBUG"] = True
@@ -48,7 +48,7 @@ app.config["PROPAGATE_EXCEPTIONS"] = True
 
 
 """ Server endpoints
-    -----------------------------------------------------------------------"""
+    ------------------------------------------------------------------------"""
 from swim import endpoints
 app.register_blueprint(endpoints.auth_blueprint)
 app.register_blueprint(endpoints.index_blueprint)
@@ -56,7 +56,7 @@ app.register_blueprint(endpoints.task_blueprint)
 
 
 """ Login session management
-    -----------------------------------------------------------------------"""
+    ------------------------------------------------------------------------"""
 # Change this key to force all users to re-authenticate.
 app.secret_key = config.get("cookies", "secret_key")
 
@@ -81,3 +81,12 @@ def load_user(user_id):
 def make_session_permanent():
     """Sets Flask session to "permanent", meaning 31 days."""
     flask_session.permanent = True
+
+
+""" Error handling
+    ------------------------------------------------------------------------"""
+@app.errorhandler(404)
+def page_not_found(e):
+    """Handles all 404 requests.
+    """
+    return render_template('404.html')

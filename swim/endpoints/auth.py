@@ -12,13 +12,10 @@ auth_blueprint = Blueprint('auth',
                            url_prefix='%s/auth' % config.get('url', 'base'))
 
 
-@auth_blueprint.route('/', methods=['GET'])
-def render_auth_page():
-    return render_template('auth.html')
-
-
-@auth_blueprint.route('/login', methods=['POST'])
+@auth_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'GET':
+        return render_template('auth.html')
     username = request.form.get('username')
     password = request.form.get('password')
     registered_user = models.User.get(username, password)

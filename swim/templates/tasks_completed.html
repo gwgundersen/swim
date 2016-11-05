@@ -15,15 +15,13 @@
                 <thead>
                     <tr>
                         <th>Description</th>
-                        <th>Status</th>
-                        <th>Date</th>
+                        <th>Date Completed</th>
                         <th></th>
                     </tr>
                 </thead>
                 {% for task in tasks %}
                     <tr>
                         <td>{{ task.description }}</td>
-                        <td>{{ task.status }}</td>
                         <td>{{ task.date_completed }}</td>
                         <td><input type="checkbox" name="{{ task.id }}"/></td>
                     </tr>
