@@ -69,8 +69,7 @@ def update_tasks_via_form():
     else:
         for task in tasks:
             task.status = status
-            if status == 'done':
-                task.date_completed = datetime.datetime.now()
+            task = _update_date_completed(task)
             db.session.merge(task)
         db.session.commit()
 
@@ -82,7 +81,7 @@ def update_tasks_via_form():
 
 
 @login_required
-@task_blueprint.route('/update_rank', methods=['POST'])
+@task_blueprint.route('/update_via_json', methods=['POST'])
 def update_tasks_via_js():
     """Update task when user reorders by dragging.
     """
@@ -91,9 +90,21 @@ def update_tasks_via_js():
         task.rank = update['rank']
         status = update['status']
         task.status = status
-        if status == 'done':
-            task.date_completed = datetime.datetime.now()
+        task = _update_date_completed(task)
         task.description = update['description']
         db.session.merge(task)
     db.session.commit()
     return 'success'
+
+
+def _update_date_completed(task):
+    """Return task with date_completed field properly assigned.
+    """
+    if task.status == 'done':
+        if not task.date_completed:
+            task.date_completed = datetime.datetime.utcnow().date()
+    else:
+        # Strip date_completed in case this is a task that was previously
+        # considered completed but no longer is.
+        task.date_completed = None
+    return task
