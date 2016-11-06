@@ -59,6 +59,8 @@ app.register_blueprint(endpoints.task_blueprint)
     ------------------------------------------------------------------------"""
 # Change this key to force all users to re-authenticate.
 app.secret_key = config.get('cookies', 'secret_key')
+# Limit "remember me" cookie to path. Default is "/".
+app.config['REMEMBER_COOKIE_PATH'] = '/swim'
 
 login_manager = LoginManager()
 login_manager.init_app(app)
