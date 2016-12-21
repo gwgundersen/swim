@@ -11,19 +11,17 @@
     <div class="page container">
         <h1>Create Task</h1>
         <p>"A small win is a concrete, complete, implemented outcome of moderate importance...<br>Small wins are controllable opportunities that produce visible results." – Karl Weick</p>
-        <form action="/swim/task/create" method="post" class="form-inline">
-            <div class="form-group">
-                <input type="text" name="description"
-                       placeholder="Task description"
-                       class="form-control"/>
-                <input type="text" name="duration"
-                       placeholder="Duration"
-                       class="form-control"/>
-                <input type="text" name="labels"
-                       placeholder="Comma-separated list of labels"
-                       class="form-control"/>
-                <input type="submit" class="btn" value="Create"/>
-            </div>
+        <form action="/swim/task/create" method="post">
+            <input type="text" name="description"
+                   placeholder="Task description"
+                   class="form-control"/>
+            <input type="text" name="duration"
+                   placeholder="Duration"
+                   class="form-control"/>
+            <input type="text" name="labels"
+                   placeholder="Comma-separated list of labels"
+                   class="form-control"/>
+            <input type="submit" class="btn" value="Create"/>
         </form>
     </div>
 </div>

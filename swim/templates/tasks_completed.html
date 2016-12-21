@@ -18,6 +18,7 @@
                     <tr>
                         <th>Description</th>
                         <th>Date Completed</th>
+                        <th>Labels</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -25,6 +26,7 @@
                     <tr>
                         <td>{{ task.description }}</td>
                         <td>{{ task.date_completed }}</td>
+                        <td>{{ task.labels_as_string }}</td>
                         <td><input type="checkbox" name="{{ task.id }}"/></td>
                     </tr>
                 {% endfor %}

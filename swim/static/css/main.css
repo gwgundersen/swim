@@ -15,10 +15,10 @@ body {
   font-family: 'Roboto' !important;
 }
 .btn.btn-primary {
-  background-color: #a29e81;
+  background-color: #1976D2;
 }
 .btn.btn-primary:active {
-  background-color: #548d76;
+  background-color: #12579b;
 }
 h1,
 h2,
@@ -28,21 +28,12 @@ h5,
 h6 {
   font-family: 'Roboto';
   margin-top: 0;
+  border-bottom: 2px solid #333;
 }
 /* Structural elements.
  * -------------------- */
 #nav {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/@color-light-brown+0,548d76+100 */
-  background: #a29e81;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #a29e81 0%, #548d76 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #a29e81 0%, #548d76 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #a29e81 0%, #548d76 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@color-light-brown', endColorstr='@color-teal', GradientType=0);
-  /* IE6-9 */
+  background: #333;
   color: white;
 }
 #nav h1 a,
@@ -57,11 +48,11 @@ h6 {
 #nav h1 {
   margin-top: 10px;
 }
+#nav p {
+  margin: 5px 0;
+}
 #nav p a {
   font-family: 'Roboto';
-  position: relative;
-  top: 28px;
-  left: 15px;
 }
 /* Content that spans pages.
  * ------------------------- */
@@ -77,6 +68,7 @@ h6 {
 #index-page h2 {
   font-size: 20px;
   font-weight: bold;
+  border: none;
 }
 #index-page ul {
   /* Required so that users can drag items into empty lists. */
@@ -136,10 +128,22 @@ h6 {
 /* Plugin overrides.
  * ----------------- */
 .sortable-dragging {
-  border: 3px solid #a29e81 !important;
+  border: 3px solid #1976D2 !important;
 }
 .sortable-placeholder {
   background-color: white !important;
   border: 2px dotted #ccc !important;
   height: 40px;
+}
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+  background-color: #1976D2;
+}
+.pagination > li > a,
+.pagination > li > span {
+  color: #1976D2;
 }

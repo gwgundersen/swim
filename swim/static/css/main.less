@@ -20,26 +20,22 @@ body {
 }
 
 .btn.btn-primary {
-  background-color: @color-light-brown;
+  background-color: @color-blue;
   &:active {
-    background-color: @color-teal;
+    background-color: #12579b;
   }
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: @font-family-accent;
   margin-top: 0;
+  border-bottom: 2px solid #333;
 }
 
 /* Structural elements.
  * -------------------- */
 #nav {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/@color-light-brown+0,548d76+100 */
-  background: @color-light-brown; /* Old browsers */
-  background: -moz-linear-gradient(top, @color-light-brown 0%, @color-teal 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, @color-light-brown 0%,@color-teal 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, @color-light-brown 0%,@color-teal 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@color-light-brown', endColorstr='@color-teal',GradientType=0 ); /* IE6-9 */
+  background: #333;
   color: white;
 
   h1, p {
@@ -56,11 +52,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   p {
+    margin: 5px 0;
+
     a {
       font-family: @font-family-accent;
-      position: relative;
-      top: 28px;
-      left: 15px;
     }
   }
 }
@@ -83,6 +78,7 @@ h1, h2, h3, h4, h5, h6 {
   h2 {
     font-size: 20px;
     font-weight: bold;
+    border: none;
   }
 
   ul {
@@ -165,11 +161,23 @@ h1, h2, h3, h4, h5, h6 {
 /* Plugin overrides.
  * ----------------- */
 .sortable-dragging {
-  border: 3px solid @color-light-brown !important;
+  border: 3px solid @color-blue !important;
 }
 
 .sortable-placeholder {
   background-color: white !important;
   border: 2px dotted #ccc !important;
   height: @dim-win-height;
+}
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+  background-color: @color-blue;
+}
+.pagination > li > a,
+.pagination > li > span {
+  color: @color-blue;
 }
