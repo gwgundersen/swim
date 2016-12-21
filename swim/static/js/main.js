@@ -28,6 +28,7 @@ $(function() {
                     id: $(li).find('input').attr('name'),
                     description: $(li).find('.description').text(),
                     duration: $(li).find('.duration').text(),
+                    labels: $(li).find('.labels').text(),
                     status: $(ul).attr('id'),
                     rank: i
                 });

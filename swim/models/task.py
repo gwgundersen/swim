@@ -41,3 +41,12 @@ class Task(db.Model):
         """Canonical list of valid statuses for user interface components.
         """
         return ['todo', 'done', 'queued', 'deleted']
+
+    @property
+    def labels_as_string(self):
+        """Return labels formatted as a comma-separated list for viewing.
+        """
+        if len(self.labels) == 0:
+            return ''
+        return ', '.join([l.name for l in self.labels])
+

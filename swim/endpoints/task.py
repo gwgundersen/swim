@@ -25,9 +25,12 @@ def render_all_tasks_page():
         .all()
     actions = models.Task.update_actions()
     total_tasks_completed = len(tasks)
+    # Convert minutes to hours.
+    total_hours_spent = sum([t.duration for t in tasks if t.duration]) / 60
     return render_template('tasks_completed.html', tasks=tasks,
                            actions=actions,
-                           total_tasks_completed=total_tasks_completed)
+                           total_tasks_completed=total_tasks_completed,
+                           total_hours_spent=total_hours_spent)
 
 
 @login_required
@@ -49,7 +52,7 @@ def create_task():
     duration = request.form.get('duration')
     # Default to 30 minutes per task.
     duration = int(duration) if duration else None
-    labels = _get_or_create_labels(request)
+    labels = _get_or_create_labels(request.form.get('labels'))
     task = models.Task(description, current_user, duration, labels)
     db.session.add(task)
     db.session.commit()
@@ -100,6 +103,8 @@ def update_tasks_via_js():
             response.status_code = 415  # Error code 415 is for unsupported media.
             return response
 
+        task.labels = _get_or_create_labels(update['labels'])
+
         task.duration = duration
         task.rank = update['rank']
         status = update['status']
@@ -125,12 +130,11 @@ def _update_date_completed(task):
     return task
 
 
-def _get_or_create_labels(request):
+def _get_or_create_labels(label_names):
     """Get or create labels from HTTP request."""
-    label_names = request.form.get('labels')
-    if label_names == '' or not label_names:
-        return
     labels = []
+    if not label_names or label_names == '' or not label_names:
+        return labels
     for l in label_names.split(','):
         label = dbutils.get_or_create(models.Label, name=l.strip())
         labels.append(label)
