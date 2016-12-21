@@ -12,9 +12,6 @@ from swim.config import config
 # Create db first. Models all import this.
 db = SQLAlchemy()
 
-# Import models. They must be interpreted before creating the database.
-from swim import models
-
 app = Flask(__name__,
             static_url_path='%s/static' % config.get('url', 'base'),
             static_folder='static')
@@ -27,6 +24,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://%s:%s@%s:3306/%s' % (
 )
 app.config['SQLALCHEMY_POOL_RECYCLE'] = 1800  # Recycle every 30 min.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
+# Import models. They must be interpreted before creating the database.
+from swim import models
 
 db.init_app(app)
 with app.app_context():

@@ -7,14 +7,14 @@ $(function() {
             connectWith: '.connected'
         })[0].addEventListener('sortupdate', saveTasksUpdates);
 
-        $('ul li').dblclick(function() {
+        $('ul li span').dblclick(function() {
             if (taskBeingEdited) {
                 return;
             }
             taskBeingEdited = true;
-            var $currentEl = $(this).find('span'),
-                description = $currentEl.html();
-            updateVal($currentEl, description);
+            var $currentEl = $(this),
+                value = $currentEl.html();
+            updateVal($currentEl, value);
         });
     }
 
@@ -26,7 +26,8 @@ $(function() {
             $(ul).find('li').each(function(i, li) {
                 updates.push({
                     id: $(li).find('input').attr('name'),
-                    description: $(li).find('span').text(),
+                    description: $(li).find('.description').text(),
+                    duration: $(li).find('.duration').text(),
                     status: $(ul).attr('id'),
                     rank: i
                 });
@@ -39,12 +40,15 @@ $(function() {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({
                 updates: updates
-            })
+            }),
+            error: function(data) {
+                alert(JSON.parse(data.responseText).message);
+            }
         })
     }
 
-    function updateVal($currentEl, description) {
-        $currentEl.html('<input class="task-being-edited" type="text" value="' + description + '" />');
+    function updateVal($currentEl, value) {
+        $currentEl.html('<input class="task-being-edited" type="text" value="' + value + '" />');
         var $task = $(".task-being-edited");
         $task
             .focus()

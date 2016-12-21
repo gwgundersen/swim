@@ -18,10 +18,12 @@ class Task(db.Model):
     user_fk        = db.Column(db.Integer, db.ForeignKey('user.id'),
                                nullable=True)
     rank           = db.Column(db.Integer)
+    duration       = db.Column(db.Integer)
 
     user = db.relationship('User', backref='tasks')
+    labels = db.relationship('Label', secondary='label_to_task')
 
-    def __init__(self, description, user):
+    def __init__(self, description, user, duration, labels):
         """Create a new small win."""
         self.description = description
         self.user = user
@@ -31,6 +33,8 @@ class Task(db.Model):
         max_ = db.session.query(func.max(Task.rank)).one()[0]
         # Place element at bottom of to-do list.
         self.rank = max_ + 1
+        self.duration = duration
+        self.labels = labels
 
     @classmethod
     def update_actions(cls):

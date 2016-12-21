@@ -14,7 +14,13 @@
         <form action="/swim/task/create" method="post" class="form-inline">
             <div class="form-group">
                 <input type="text" name="description"
-                       placeholder="Enter a small win..."
+                       placeholder="Task description"
+                       class="form-control"/>
+                <input type="text" name="duration"
+                       placeholder="Duration"
+                       class="form-control"/>
+                <input type="text" name="labels"
+                       placeholder="Comma-separated list of labels"
                        class="form-control"/>
                 <input type="submit" class="btn" value="Create"/>
             </div>

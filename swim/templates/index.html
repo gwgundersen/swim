@@ -23,7 +23,8 @@
                         {% for task in todo %}
                         <li>
                             <input type="checkbox" name="{{ task.id }}"/>
-                            <span>{{ task.description }}</span>
+                            <span class="description">{{ task.description }}</span>
+                            <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
                         </li>
                         {% endfor %}
                     </ul>
@@ -34,7 +35,8 @@
                         {% for task in queued %}
                         <li>
                             <input type="checkbox" name="{{ task.id }}"/>
-                            <span>{{ task.description }}</span>
+                            <span class="description">{{ task.description }}</span>
+                            <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
                         </li>
                         {% endfor %}
                     </ul>
@@ -45,7 +47,8 @@
                         {% for task in done %}
                         <li>
                             <input type="checkbox" name="{{ task.id }}"/>
-                            <span>{{ task.description }}</span>
+                            <span class="description">{{ task.description }}</span>
+                            <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
                         </li>
                         {% endfor %}
                     </ul>

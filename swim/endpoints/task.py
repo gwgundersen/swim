@@ -1,11 +1,10 @@
 """CRUD actions for tasks."""
 
 import datetime
-from flask import g, Blueprint, request, redirect, render_template, url_for
+from flask import jsonify, Blueprint, request, redirect, render_template, url_for
 from flask.ext.login import current_user, login_required
 
-from swim import models
-from swim import db
+from swim import models, db, dbutils
 from swim.config import config
 
 
@@ -47,7 +46,11 @@ def create_task():
     description = request.form.get('description')
     if not description:
         return redirect(url_for('task.create_task'))
-    task = models.Task(description, current_user)
+    duration = request.form.get('duration')
+    # Default to 30 minutes per task.
+    duration = int(duration) if duration else None
+    labels = _get_or_create_labels(request)
+    task = models.Task(description, current_user, duration, labels)
     db.session.add(task)
     db.session.commit()
     return redirect(url_for('index.render_index_page'))
@@ -87,11 +90,23 @@ def update_tasks_via_js():
     """
     for update in request.json.get('updates'):
         task = db.session.query(models.Task).get(update['id'])
+
+        duration = update['duration']
+        # isdigit is perfect for our uses. It does not allow negative numbers
+        # or decimals.
+        if not duration.isdigit():
+            msg = {'message': 'The duration must be an integer'}
+            response = jsonify(msg)
+            response.status_code = 415  # Error code 415 is for unsupported media.
+            return response
+
+        task.duration = duration
         task.rank = update['rank']
         status = update['status']
         task.status = status
         task = _update_date_completed(task)
         task.description = update['description']
+
         db.session.merge(task)
     db.session.commit()
     return 'success'
@@ -108,3 +123,15 @@ def _update_date_completed(task):
         # considered completed but no longer is.
         task.date_completed = None
     return task
+
+
+def _get_or_create_labels(request):
+    """Get or create labels from HTTP request."""
+    label_names = request.form.get('labels')
+    if label_names == '' or not label_names:
+        return
+    labels = []
+    for l in label_names.split(','):
+        label = dbutils.get_or_create(models.Label, name=l.strip())
+        labels.append(label)
+    return labels
