@@ -23,12 +23,24 @@ def render_all_tasks_page():
         .filter(models.Task.status == 'done')\
         .order_by(models.Task.date_completed.desc())\
         .all()
+    labels = db.session.query(models.Label)\
+        .all()
+    label_task_counts = {l.name: 0 for l in labels}
+    for label_name in label_task_counts:
+        count = db.session.query(models.Task)\
+            .filter(models.Task.user_fk == current_user.id)\
+            .filter(models.Task.status == 'done')\
+            .filter(models.Label.name == label_name)\
+            .count()
+        label_task_counts[label_name] = count
+    print(label_task_counts)
     actions = models.Task.update_actions()
     total_tasks_completed = len(tasks)
     # Convert minutes to hours.
     total_hours_spent = sum([t.duration for t in tasks if t.duration]) / 60
     return render_template('tasks_completed.html', tasks=tasks,
                            actions=actions,
+                           label_task_counts=label_task_counts,
                            total_tasks_completed=total_tasks_completed,
                            total_hours_spent=total_hours_spent)
 

@@ -12,6 +12,13 @@
         <h1>Completed Tasks</h1>
         <p>Small wins completed: {{ total_tasks_completed }}</p>
         <p>Total time spent (hours): {{ total_hours_spent }}</p>
+        <ul class="list-inline">
+            {% for label in label_task_counts %}
+                <li>
+                    {{ label }}: {{ label_task_counts[label] }}
+                </li>
+            {% endfor %}
+        </ul>
         <form action="/swim/task/update" method="post">
             <table class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
