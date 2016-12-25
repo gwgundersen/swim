@@ -50,7 +50,8 @@ def render_all_tasks_page():
 def render_create_tasks_page():
     """Render create tasks page.
     """
-    return render_template('tasks_create.html')
+    labels = db.session.query(models.Label).all()
+    return render_template('tasks_create.html', labels=labels)
 
 
 @login_required

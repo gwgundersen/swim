@@ -23,6 +23,15 @@
                    class="form-control"/>
             <input type="submit" class="btn" value="Create"/>
         </form>
+        <div id="existing-labels">
+            <!-- This is a hack. I don't want to build an autocomplete feature
+                 that works with a comma, separated list.-->
+            <strong>Existing labels: </strong><span>
+            {% for label in labels %}
+                {{ label.name }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+            </span>
+        </div>
     </div>
 </div>
 
