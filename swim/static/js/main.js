@@ -36,7 +36,7 @@ $(function() {
         });
 
         $.ajax({
-            url: '/swim/task/update_via_json',
+            url: '/task/update_via_json',
             type: 'POST',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({

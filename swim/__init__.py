@@ -1,8 +1,8 @@
 """Configure and start the web server."""
 
 from flask import Flask, g, session as flask_session, render_template
-from flask.ext.login import LoginManager, current_user
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, current_user
+from flask_sqlalchemy import SQLAlchemy
 
 from swim.config import config
 
@@ -37,7 +37,7 @@ with app.app_context():
 
 """ URL configuration
     ------------------------------------------------------------------------"""
-app.config.base_tag_url = '/swim/'
+app.config.base_tag_url = '/'
 
 
 """ Debugging
