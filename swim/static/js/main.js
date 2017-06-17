@@ -3,6 +3,8 @@ $(function() {
     var taskBeingEdited = false;
 
     if ($('#index-page').length) {
+        saveTasksUpdates();
+
         sortable('ul#todo, ul#queued, ul#done', {
             connectWith: '.connected'
         })[0].addEventListener('sortupdate', saveTasksUpdates);
@@ -45,7 +47,9 @@ $(function() {
             error: function(data) {
                 alert(JSON.parse(data.responseText).message);
             }
-        })
+        });
+
+        updateTotalTimes(updates);
     }
 
     function updateVal($currentEl, value) {
@@ -65,6 +69,21 @@ $(function() {
                 taskBeingEdited = false;
                 saveTasksUpdates();
             }
+        });
+    }
+
+    function updateTotalTimes(updates) {
+        var times = {
+            'todo': 0,
+            'queued': 0,
+            'done': 0
+        };
+        $.each(updates, function(i, obj) {
+            times[obj.status] += parseInt(obj.duration);
+        });
+        $.each(times, function(key, val) {
+            var hours = (val / 60.0).toFixed(2) + " hrs";
+            $('#' + key).parent().find('.total-time').text(hours);
         });
     }
 

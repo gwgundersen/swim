@@ -106,6 +106,10 @@ h6 {
 #index-page ul#done li span {
   text-decoration: line-through;
 }
+#index-page .total-time {
+  font-size: 14px;
+  font-weight: bold;
+}
 #index-page #controls {
   border-top: 1px solid #eee;
   padding-top: 15px;

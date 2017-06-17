@@ -19,6 +19,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <h2>Todo</h2>
+                    <div class="total-time"></div>
                     <ul class="list-unstyled connected" id="todo">
                         {% for task in todo %}
                         <li>
@@ -32,6 +33,7 @@
                 </div>
                 <div class="col-md-4">
                     <h2>Queued</h2>
+                    <div class="total-time"></div>
                     <ul class="list-unstyled connected" id="queued">
                         {% for task in queued %}
                         <li>
@@ -45,6 +47,7 @@
                 </div>
                 <div class="col-md-4">
                     <h2>Done</h2>
+                    <div class="total-time"></div>
                     <ul class="list-unstyled connected" id="done">
                         {% for task in done %}
                         <li>
