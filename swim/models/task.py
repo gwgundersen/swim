@@ -21,7 +21,7 @@ class Task(db.Model):
     duration       = db.Column(db.Integer)
 
     user = db.relationship('User', backref='tasks')
-    labels = db.relationship('Label', secondary='label_to_task')
+    labels = db.relationship('Label', backref='tasks', secondary='label_to_task')
 
     def __init__(self, description, user, duration, labels):
         """Create a new small win."""

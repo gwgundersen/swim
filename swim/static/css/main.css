@@ -103,6 +103,9 @@ h6 {
   border-left: 1px solid #faafa6;
   border-right: 1px solid #faafa6;
 }
+#index-page ul#todo li.first {
+  background-color: #faafa6;
+}
 #index-page ul#done li span {
   text-decoration: line-through;
 }

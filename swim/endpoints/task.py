@@ -23,26 +23,20 @@ def render_all_tasks_page():
         .filter(models.Task.status == 'done')\
         .order_by(models.Task.date_completed.desc())\
         .all()
+    total_hours_spent = _get_hours(tasks)
     labels = db.session.query(models.Label)\
         .all()
-    label_task_counts = {l.name: 0 for l in labels}
-    for label_name in label_task_counts:
-        count = db.session.query(models.Task)\
-            .filter(models.Task.user_fk == current_user.id)\
-            .filter(models.Task.status == 'done')\
-            .filter(models.Label.name == label_name)\
-            .count()
-        label_task_counts[label_name] = count
-    print(label_task_counts)
+    pct_time_per_label = {l.name: round(((_get_hours(l.tasks) / total_hours_spent) * 100), 2)
+                          for l in labels}
+    label_task_counts = {l.name: len(l.tasks) for l in labels}
     actions = models.Task.update_actions()
     total_tasks_completed = len(tasks)
-    # Convert minutes to hours.
-    total_hours_spent = sum([t.duration for t in tasks if t.duration]) / 60
     return render_template('tasks_completed.html', tasks=tasks,
                            actions=actions,
                            label_task_counts=label_task_counts,
                            total_tasks_completed=total_tasks_completed,
-                           total_hours_spent=total_hours_spent)
+                           total_hours_spent=total_hours_spent,
+                           pct_time_per_label=pct_time_per_label)
 
 
 @login_required
@@ -128,6 +122,14 @@ def update_tasks_via_js():
         db.session.merge(task)
     db.session.commit()
     return 'success'
+
+
+def _get_hours(tasks):
+    """Return total time in hours from list of tasks.
+    """
+    mins = sum([t.duration if t.duration else 0 for t in tasks])
+    hours = mins / 60.0
+    return round(hours, 2)
 
 
 def _update_date_completed(task):

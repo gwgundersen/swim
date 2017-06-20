@@ -22,7 +22,11 @@
                     <div class="total-time"></div>
                     <ul class="list-unstyled connected" id="todo">
                         {% for task in todo %}
-                        <li>
+                        {% if loop.index == 1 %}
+                            <li class="first">
+                            {% else %}
+                            <li>
+                            {% endif %}
                             <input type="checkbox" name="{{ task.id }}"/>
                             <span class="description">{{ task.description }}</span>
                             <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
@@ -36,12 +40,12 @@
                     <div class="total-time"></div>
                     <ul class="list-unstyled connected" id="queued">
                         {% for task in queued %}
-                        <li>
-                            <input type="checkbox" name="{{ task.id }}"/>
-                            <span class="description">{{ task.description }}</span>
-                            <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
-                            <span class="labels">{{ task.labels_as_string }}</span>
-                        </li>
+                            <li>
+                                <input type="checkbox" name="{{ task.id }}"/>
+                                <span class="description">{{ task.description }}</span>
+                                <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
+                                <span class="labels">{{ task.labels_as_string }}</span>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
