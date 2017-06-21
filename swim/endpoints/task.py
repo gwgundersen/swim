@@ -1,10 +1,9 @@
 """CRUD actions for tasks."""
 
-import datetime
 from flask import jsonify, Blueprint, request, redirect, render_template, url_for
 from flask.ext.login import current_user, login_required
 
-from swim import models, db, dbutils
+from swim import models, db, dbutils, nytime
 from swim.config import config
 
 
@@ -138,7 +137,7 @@ def _update_date_completed(task):
     """
     if task.status == 'done':
         if not task.date_completed:
-            task.date_completed = datetime.datetime.utcnow().date()
+            task.date_completed = nytime.get_current_date()
     else:
         # Strip date_completed in case this is a task that was previously
         # considered completed but no longer is.
