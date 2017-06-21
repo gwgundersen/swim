@@ -4,6 +4,7 @@ $(function() {
 
     if ($('#index-page').length) {
         saveTasksUpdates();
+        highlightFirstItem();
 
         sortable('ul#todo, ul#queued, ul#done', {
             connectWith: '.connected'
@@ -50,6 +51,7 @@ $(function() {
         });
 
         updateTotalTimes(updates);
+        highlightFirstItem();
     }
 
     function updateVal($currentEl, value) {
@@ -87,6 +89,10 @@ $(function() {
         });
     }
 
-    $('table').DataTable();
+    function highlightFirstItem() {
+        $('ul#todo').find('li').removeClass('first');
+        $('ul#todo').find('li').first().addClass('first');
+    }
 
+    $('table').DataTable();
 });

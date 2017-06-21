@@ -22,11 +22,7 @@
                     <div class="total-time"></div>
                     <ul class="list-unstyled connected" id="todo">
                         {% for task in todo %}
-                        {% if loop.index == 1 %}
-                            <li class="first">
-                            {% else %}
-                            <li>
-                            {% endif %}
+                        <li>
                             <input type="checkbox" name="{{ task.id }}"/>
                             <span class="description">{{ task.description }}</span>
                             <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
