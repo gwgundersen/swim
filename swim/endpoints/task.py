@@ -28,6 +28,7 @@ def render_all_tasks_page():
         .all()
     pct_time_per_label = {l.name: round(((_get_hours(l.tasks) / total_hours_spent) * 100), 2)
                           for l in labels}
+
     label_task_counts = {l.name: len(l.tasks) for l in labels}
     actions = models.Task.update_actions()
     total_tasks_completed = len(tasks)

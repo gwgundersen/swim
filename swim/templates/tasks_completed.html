@@ -12,7 +12,7 @@
         <h1>Completed Tasks</h1>
         <p>Small wins completed: {{ total_tasks_completed }}</p>
         <p>Total time spent (hours): {{ total_hours_spent }}</p>
-        <table class="table">
+        <table class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>Label</th>
@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{ label }}</td>
                     <td>{{ label_task_counts[label] }}</td>
-                    <td>{{ pct_time_per_label[label] }}</td>
+                    <td>{{ pct_time_per_label[label] }}%</td>
                 </tr>
             {% endfor %}
         </table>
