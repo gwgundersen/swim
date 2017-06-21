@@ -31,7 +31,7 @@ def render_index_page():
 
     u = datetime.datetime.utcnow()
     u = u.replace(tzinfo=pytz.utc)
-    current_time = u.astimezone(pytz.timezone("America/New_York"))
+    current_time = u.astimezone(pytz.timezone("America/New_York")).date()
 
     done = db.session.query(models.Task)\
         .filter(models.Task.status == 'done')\
