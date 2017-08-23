@@ -131,5 +131,8 @@ $(function() {
         $('ul#todo').find('li').first().addClass('first');
     }
 
-    $('table').DataTable();
+    $('table').DataTable({
+        order: [[ 2, 'desc' ]],
+        paging: false
+    });
 });
