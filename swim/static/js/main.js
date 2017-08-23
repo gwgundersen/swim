@@ -25,7 +25,7 @@ $(function() {
      */
     function saveTasksUpdates() {
         var updates = [];
-        $('#index-page ul').each(function(i, ul) {
+        $('#index-page ul.connected').each(function(i, ul) {
             $(ul).find('li').each(function(i, li) {
                 updates.push({
                     id: $(li).find('input').attr('name'),
@@ -110,7 +110,7 @@ $(function() {
 
         $.each(times, function(status, obj) {
             var hours = (obj.total / 60.0).toFixed(2) + " hrs",
-                $list = $('#' + status).parent().find('.label-pcts'),
+                $list = $('#' + status).parent().find('ul.label-pcts'),
                 nItems = 0;
             $('#' + status).parent().find('.total-time').text(hours);
             $list.empty();
