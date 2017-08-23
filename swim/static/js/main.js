@@ -50,7 +50,7 @@ $(function() {
             }
         });
 
-        updateTotalTimes(updates);
+        updateTimesAndPercentages(updates);
         highlightFirstItem();
     }
 
@@ -74,18 +74,55 @@ $(function() {
         });
     }
 
-    function updateTotalTimes(updates) {
+    function updateTimesAndPercentages(updates) {
         var times = {
-            'todo': 0,
-            'queued': 0,
-            'done': 0
+            todo: {
+                total: 0,
+                labels: {}
+            },
+            queued: {
+                total: 0,
+                labels: {}
+            },
+            done: {
+                total: 0,
+                labels: {}
+            }
         };
         $.each(updates, function(i, obj) {
-            times[obj.status] += parseInt(obj.duration);
+            var time = parseInt(obj.duration),
+                label = obj.labels.split(',')[0],
+                status = obj.status;
+            times[status].total += time;
+            if (typeof times[status].labels[label] === 'undefined') {
+                times[status].labels[label] = 0
+            }
+            times[status].labels[label] += time;
         });
-        $.each(times, function(key, val) {
-            var hours = (val / 60.0).toFixed(2) + " hrs";
-            $('#' + key).parent().find('.total-time').text(hours);
+        // This tracks the status column with the most labels so that we can
+        // create blank list items for columns with fewer labels. This ensures
+        // the columns looks like they start at the same height.
+        var maxNLables = Math.max(
+            Object.keys(times.todo.labels).length,
+            Object.keys(times.queued.labels).length,
+            Object.keys(times.done.labels).length
+        );
+
+        $.each(times, function(status, obj) {
+            var hours = (obj.total / 60.0).toFixed(2) + " hrs",
+                $list = $('#' + status).parent().find('.label-pcts'),
+                nItems = 0;
+            $('#' + status).parent().find('.total-time').text(hours);
+            $list.empty();
+            $.each(obj.labels, function(label, duration) {
+                var pct = Math.round(duration / obj.total * 100),
+                    text = label + ": " + pct + '%';
+                $list.append('<li>' + text + '</li>');
+                nItems += 1;
+            });
+            for (var i = 0; i < maxNLables - nItems; i++) {
+                $list.append('<li>&nbsp;</li>');
+            }
         });
     }
 

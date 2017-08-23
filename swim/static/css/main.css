@@ -70,12 +70,12 @@ h6 {
   font-weight: bold;
   border: none;
 }
-#index-page ul {
+#index-page ul.connected {
   /* Required so that users can drag items into empty lists. */
   min-height: 40px;
   border-bottom: 1px solid #eee;
 }
-#index-page ul li {
+#index-page ul.connected li {
   background-color: #f9f9f9;
   min-height: 40px;
   padding: 10px;
@@ -84,34 +84,39 @@ h6 {
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
 }
-#index-page ul li span {
+#index-page ul.connected li span {
   position: relative;
   left: 10px;
 }
-#index-page ul li span input.task-being-edited {
+#index-page ul.connected li span input.task-being-edited {
   position: relative;
   top: -2px;
   border: 1px solid #faafa6;
   width: 90%;
 }
-#index-page ul#todo {
+#index-page ul.connected#todo {
   border-bottom: 1px solid #faafa6;
 }
-#index-page ul#todo li {
+#index-page ul.connected#todo li {
   background-color: #fddeda;
   border-top: 1px solid #faafa6;
   border-left: 1px solid #faafa6;
   border-right: 1px solid #faafa6;
 }
-#index-page ul#todo li.first {
+#index-page ul.connected#todo li.first {
   background-color: #faafa6;
 }
-#index-page ul#done li span {
+#index-page ul.connected#done li span {
   text-decoration: line-through;
 }
 #index-page .total-time {
   font-size: 14px;
   font-weight: bold;
+}
+#index-page ul.label-pcts {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 10px 0 15px 0;
 }
 #index-page #controls {
   border-top: 1px solid #eee;

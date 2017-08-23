@@ -29,10 +29,8 @@ def render_all_tasks_page():
                           for l in labels}
 
     label_task_counts = {l.name: len(l.tasks) for l in labels}
-    actions = models.Task.update_actions()
     total_tasks_completed = len(tasks)
-    return render_template('tasks_completed.html', tasks=tasks,
-                           actions=actions,
+    return render_template('tasks_completed.html',
                            label_task_counts=label_task_counts,
                            total_tasks_completed=total_tasks_completed,
                            total_hours_spent=total_hours_spent,

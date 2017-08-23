@@ -81,7 +81,7 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
   }
 
-  ul {
+  ul.connected {
     /* Required so that users can drag items into empty lists. */
     min-height: @dim-win-height;
     border-bottom: 1px solid #eee;
@@ -135,6 +135,12 @@ h1, h2, h3, h4, h5, h6 {
   .total-time {
     font-size: 14px;
     font-weight: bold;
+  }
+
+  ul.label-pcts {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 10px 0 15px 0;
   }
 
   #controls {

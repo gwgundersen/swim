@@ -28,34 +28,6 @@
                 </tr>
             {% endfor %}
         </table>
-        <form action="task/update" method="post">
-            <table class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Date Completed</th>
-                        <th>Labels</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                {% for task in tasks %}
-                    <tr>
-                        <td>{{ task.description }}</td>
-                        <td>{{ task.date_completed }}</td>
-                        <td>{{ task.labels_as_string }}</td>
-                        <td><input type="checkbox" name="{{ task.id }}"/></td>
-                    </tr>
-                {% endfor %}
-            </table>
-            <div>
-                <select name="status">
-                    {% for action in actions %}
-                        <option value="{{ action }}">{{ action|capitalize }}</option>
-                    {% endfor %}
-                </select>
-                <input type="submit" class="btn"/>
-            </div>
-        </form>
     </div>
 </div>
 
