@@ -16,15 +16,17 @@
             <thead>
                 <tr>
                     <th>Label</th>
-                    <th># tasks</th>
-                    <th>% time</th>
+                    <th>Hours</th>
+                    <th>Percent</th>
+                    <th>Number</th>
                 </tr>
             </thead>
-            {% for label in label_task_counts %}
+            {% for label in label_names %}
                 <tr>
                     <td>{{ label }}</td>
-                    <td>{{ label_task_counts[label] }}</td>
+                    <td>{{ hours_per_label[label] }}</td>
                     <td>{{ pct_time_per_label[label] }}%</td>
+                    <td>{{ n_tasks_per_label[label] }}</td>
                 </tr>
             {% endfor %}
         </table>

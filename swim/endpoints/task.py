@@ -27,14 +27,16 @@ def render_all_tasks_page():
         .all()
     pct_time_per_label = {l.name: round(((_get_hours(l.tasks) / total_hours_spent) * 100), 2)
                           for l in labels}
-
-    label_task_counts = {l.name: len(l.tasks) for l in labels}
+    hours_per_label = {l.name: _get_hours(l.tasks) for l in labels}
+    n_tasks_per_label = {l.name: len(l.tasks) for l in labels}
     total_tasks_completed = len(tasks)
     return render_template('tasks_completed.html',
-                           label_task_counts=label_task_counts,
+                           label_names=[l.name for l in labels],
                            total_tasks_completed=total_tasks_completed,
                            total_hours_spent=total_hours_spent,
-                           pct_time_per_label=pct_time_per_label)
+                           hours_per_label=hours_per_label,
+                           pct_time_per_label=pct_time_per_label,
+                           n_tasks_per_label=n_tasks_per_label)
 
 
 @login_required
