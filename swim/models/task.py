@@ -68,7 +68,7 @@ class Task(db.Model):
 
     @property
     def duration_in_hours(self):
-        return round(self.duration / 60, 2)
+        return round(float(self.duration) / 60, 2)
 
     @property
     def is_reminder(self):
