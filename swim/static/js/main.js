@@ -5,20 +5,9 @@ $(function() {
     if ($('#index-page').length) {
         saveTasksUpdates();
         highlightFirstItem();
-
         sortable('ul#todo, ul#queued, ul#done', {
             connectWith: '.connected'
         })[0].addEventListener('sortupdate', saveTasksUpdates);
-
-        $('ul li span').dblclick(function() {
-            if (taskBeingEdited) {
-                return;
-            }
-            taskBeingEdited = true;
-            var $currentEl = $(this),
-                value = $currentEl.html();
-            updateVal($currentEl, value);
-        });
     }
 
     /* Save new properties for small tasks.
@@ -28,7 +17,7 @@ $(function() {
         $('#index-page ul.connected').each(function(i, ul) {
             $(ul).find('li').each(function(i, li) {
                 updates.push({
-                    id: $(li).find('input').attr('name'),
+                    id: $(li).attr('name'),
                     description: $(li).find('.description').text(),
                     duration: $(li).find('.duration').text(),
                     labels: $(li).find('.labels').text(),
@@ -54,25 +43,6 @@ $(function() {
         highlightFirstItem();
     }
 
-    function updateVal($currentEl, value) {
-        $currentEl.html('<input class="task-being-edited" type="text" value="' + value + '" />');
-        var $task = $(".task-being-edited");
-        $task
-            .focus()
-            .keyup(function (event) {
-                if (event.keyCode == 13) {
-                    $currentEl.html($task.val().trim());
-                }
-            });
-
-        $(document).click(function(evt) {
-            if ($task.length && !$(evt.target).hasClass("task-being-edited")) {
-                $currentEl.html($task.val().trim());
-                taskBeingEdited = false;
-                saveTasksUpdates();
-            }
-        });
-    }
 
     function updateTimesAndPercentages(updates) {
         var times = {
@@ -131,8 +101,13 @@ $(function() {
         $('ul#todo').find('li').first().addClass('first');
     }
 
-    $('table').DataTable({
+    $('#completed-tasks-table').DataTable({
         order: [[ 2, 'desc' ]],
+        paging: false
+    });
+
+    $('#upcoming-tasks-table').DataTable({
+        order: [[ 3, 'asc' ]],
         paging: false
     });
 });

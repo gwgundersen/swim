@@ -2,6 +2,7 @@
 
 from flask import jsonify, Blueprint, request, redirect, render_template, url_for
 from flask.ext.login import current_user, login_required
+import datetime
 
 from swim import models, db, dbutils, nytime
 from swim.config import config
@@ -13,9 +14,9 @@ task_blueprint = Blueprint('task',
 
 
 @login_required
-@task_blueprint.route('/', methods=['GET'])
-def render_all_tasks_page():
-    """Render all tasks.
+@task_blueprint.route('/completed', methods=['GET'])
+def render_completed_page():
+    """Render completed tasks.
     """
     tasks = db.session.query(models.Task)\
         .filter(models.Task.user_fk == current_user.id)\
@@ -40,6 +41,20 @@ def render_all_tasks_page():
 
 
 @login_required
+@task_blueprint.route('/upcoming', methods=['GET'])
+def render_upcoming_page():
+    """Render upcoming tasks.
+    """
+    tasks = db.session.query(models.Task)\
+        .filter(models.Task.user_fk == current_user.id)\
+        .filter(models.Task.start_date != None)\
+        .filter(models.Task.status != 'done')\
+        .all()
+    return render_template('tasks_upcoming.html',
+                           tasks=tasks)
+
+
+@login_required
 @task_blueprint.route('/create', methods=['GET'])
 def render_create_tasks_page():
     """Render create tasks page.
@@ -53,14 +68,11 @@ def render_create_tasks_page():
 def create_task():
     """Create new task.
     """
-    description = request.form.get('description')
+    description, duration, labels, start_date = \
+        _get_task_properties_from_request()
     if not description:
         return redirect(url_for('task.create_task'))
-    duration = request.form.get('duration')
-    # Default to 30 minutes per task.
-    duration = int(duration) if duration else None
-    labels = _get_or_create_labels(request.form.get('labels'))
-    task = models.Task(description, current_user, duration, labels)
+    task = models.Task(description, current_user, duration, start_date, labels)
     db.session.add(task)
     db.session.commit()
     return redirect(url_for('index.render_index_page'))
@@ -79,6 +91,10 @@ def update_tasks_via_form():
         for task in tasks:
             db.session.delete(task)
         db.session.commit()
+    elif status == 'edit':
+        task_id = tasks[0].id
+        url = url_for('task.edit_tasks', id_=task_id)
+        return redirect(url)
     else:
         for task in tasks:
             task.status = status
@@ -91,6 +107,40 @@ def update_tasks_via_form():
     else:
         url = url_for('index.render_index_page')
     return redirect(url)
+
+
+@login_required
+@task_blueprint.route('/edit/<int:id_>', methods=['GET', 'POST'])
+def edit_tasks(id_):
+    """Edit tasks.
+    """
+    task = db.session.query(models.Task).get(id_)
+    if request.method == 'GET':
+        return render_template('task_edit.html',
+                               task=task)
+    else:
+        description, duration, labels, start_date = \
+            _get_task_properties_from_request()
+        if not description:
+            return redirect(url_for('task.edit_tasks'))
+        task.description = description
+        task.duration = duration
+        task.labels = labels
+        task.start_date = start_date
+        db.session.merge(task)
+        db.session.commit()
+    return redirect(url_for('index.render_index_page'))
+
+
+@login_required
+@task_blueprint.route('/delete/<int:id_>', methods=['POST'])
+def delete_task(id_):
+    """Delete task.
+    """
+    task = db.session.query(models.Task).get(id_)
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for('index.render_index_page'))
 
 
 @login_required
@@ -154,3 +204,19 @@ def _get_or_create_labels(label_names):
         label = dbutils.get_or_create(models.Label, name=l.strip())
         labels.append(label)
     return labels
+
+
+def _get_task_properties_from_request():
+    """Process task properties from request. Used when creating or editing
+    task.
+    """
+    description = request.form.get('description', None)
+    duration = request.form.get('duration')
+    duration = int(duration) if duration else 30
+    labels = _get_or_create_labels(request.form.get('labels'))
+    start_date = request.form.get('start_date', None)
+    if start_date:
+        start_date = datetime.datetime.strptime(start_date, "%Y-%m-%d %H:%M")
+    if start_date == '':
+        start_date = None
+    return description, duration, labels, start_date

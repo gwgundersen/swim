@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC="">
+<html>
+
+{% include "head.html" %}
+
+<body>
+
+{% include "nav.html" %}
+
+<div id="tasks-upcoming-page" class="page-wrapper">
+
+    {% include "menu.html" %}
+
+    <div class="page container">
+        <h1>Upcoming</h1>
+        <table id='upcoming-tasks-table' class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Date &amp; time</th>
+                    <th>Task</th>
+                    <th>Days until</th>
+                    <th>Time (hours)</th>
+                    <th>Labels</th>
+                </tr>
+            </thead>
+            {% for task in tasks %}
+                <tr>
+                    <td><a href="task/edit/{{ task.id }}">Edit</a></td>
+                    <td>{{ task.start_date_human_readable }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.days_until }}</td>
+                    <td>{{ task.duration_in_hours }}</td>
+                    <td>{{ task.labels_as_string }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

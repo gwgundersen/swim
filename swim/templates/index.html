@@ -8,12 +8,9 @@
 {% include "nav.html" %}
 
 <div id="index-page" class="page-wrapper">
-    <div id="menu" class="container-full">
-        <div class="container">
-            <a href="task/create" class="btn btn-primary">Create</a>
-            <a href="task" class="btn btn-primary">Completed</a>
-        </div>
-    </div>
+
+    {% include "menu.html" %}
+
     <div class="page container">
         <form action="task/update" method="post">
             <div class="row">
@@ -23,12 +20,13 @@
                     <ul class="label-pcts"></ul>
                     <ul class="list-unstyled connected" id="todo">
                         {% for task in todo %}
-                        <li>
-                            <input type="checkbox" name="{{ task.id }}"/>
-                            <span class="description">{{ task.description }}</span>
-                            <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
-                            <span class="labels">{{ task.labels_as_string }}</span>
-                        </li>
+                            {% set css_class = 'upcoming' if task.start_date else '' %}
+                            <li name="{{ task.id }}" class="{{ css_class }}">
+                                <span class="description">{{ task.description }}</span>
+                                <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
+                                <span class="labels">{{ task.labels_as_string }}</span>
+                                <a class="edit-btn" href="task/edit/{{ task.id }}">Edit</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -38,11 +36,12 @@
                     <ul class="label-pcts"></ul>
                     <ul class="list-unstyled connected" id="queued">
                         {% for task in queued %}
-                            <li>
-                                <input type="checkbox" name="{{ task.id }}"/>
+                            {% set css_class = 'upcoming' if task.start_date else '' %}
+                            <li name="{{ task.id }}" class="{{ css_class }}">
                                 <span class="description">{{ task.description }}</span>
                                 <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
                                 <span class="labels">{{ task.labels_as_string }}</span>
+                                <a class="edit-btn" href="task/edit/{{ task.id }}">Edit</a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -53,23 +52,16 @@
                     <ul class="label-pcts"></ul>
                     <ul class="list-unstyled connected" id="done">
                         {% for task in done %}
-                        <li>
-                            <input type="checkbox" name="{{ task.id }}"/>
-                            <span class="description">{{ task.description }}</span>
-                            <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
-                            <span class="labels">{{ task.labels_as_string }}</span>
-                        </li>
+                            {% set css_class = 'upcoming' if task.start_date else '' %}
+                            <li name="{{ task.id }}" class="{{ css_class }}">
+                                <span class="description">{{ task.description }}</span>
+                                <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
+                                <span class="labels">{{ task.labels_as_string }}</span>
+                                <a class="edit-btn" href="task/edit/{{ task.id }}">Edit</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
-            </div>
-            <div id="controls">
-                <select name="status">
-                    {% for action in actions %}
-                        <option value="{{ action }}">{{ action|capitalize }}</option>
-                    {% endfor %}
-                </select>
-                <input type="submit" class="btn" value="Update"/>
             </div>
         </form>
     </div>

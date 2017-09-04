@@ -59,12 +59,12 @@ h6 {
 .page {
   margin: 30px auto;
 }
-/* Pages.
- * ------ */
-#index-page #menu {
+#menu {
   padding: 15px 0;
   background-color: #eee;
 }
+/* Pages.
+ * ------ */
 #index-page h2 {
   font-size: 20px;
   font-weight: bold;
@@ -79,20 +79,13 @@ h6 {
   background-color: #f9f9f9;
   min-height: 40px;
   padding: 10px;
-  font-weight: bold;
   border-top: 1px solid #eee;
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
 }
-#index-page ul.connected li span {
-  position: relative;
-  left: 10px;
-}
-#index-page ul.connected li span input.task-being-edited {
-  position: relative;
-  top: -2px;
-  border: 1px solid #faafa6;
-  width: 90%;
+#index-page ul.connected li .edit-btn {
+  padding-left: 5px;
+  color: #1976D2;
 }
 #index-page ul.connected#todo {
   border-bottom: 1px solid #faafa6;
@@ -105,6 +98,9 @@ h6 {
 }
 #index-page ul.connected#todo li.first {
   background-color: #faafa6;
+}
+#index-page ul.connected li.upcoming {
+  font-weight: bold;
 }
 #index-page ul.connected#done li span {
   text-decoration: line-through;
@@ -131,7 +127,8 @@ h6 {
   font-size: 16px;
   margin: 30px 0;
 }
-#tasks-completed-page table {
+#tasks-completed-page table,
+#tasks-upcoming-page table {
   font-size: 13px;
 }
 #auth-page input {

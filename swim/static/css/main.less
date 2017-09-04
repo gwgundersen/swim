@@ -66,14 +66,14 @@ h1, h2, h3, h4, h5, h6 {
   margin: 30px auto;
 }
 
+#menu {
+  padding: 15px 0;
+  background-color: #eee;
+}
+
 /* Pages.
  * ------ */
 #index-page {
-
-  #menu {
-    padding: 15px 0;
-    background-color: #eee;
-  }
 
   h2 {
     font-size: 20px;
@@ -90,21 +90,13 @@ h1, h2, h3, h4, h5, h6 {
       background-color: #f9f9f9;
       min-height: @dim-win-height;
       padding: 10px;
-      font-weight: bold;
       border-top: 1px solid #eee;
       border-left: 1px solid #eee;
       border-right: 1px solid #eee;
 
-      span {
-        position: relative;
-        left: 10px;
-
-        input.task-being-edited {
-          position: relative;
-          top: -2px;
-          border: 1px solid @color-pink;
-          width: 90%;
-        }
+      .edit-btn {
+        padding-left: 5px;
+        color: @color-blue;
       }
     }
 
@@ -121,6 +113,10 @@ h1, h2, h3, h4, h5, h6 {
           background-color: @color-pink;
         }
       }
+    }
+
+    li.upcoming {
+      font-weight: bold;
     }
 
     &#done {
@@ -161,7 +157,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-#tasks-completed-page {
+#tasks-completed-page,
+#tasks-upcoming-page {
   table {
     font-size: @font-size-base;
   }

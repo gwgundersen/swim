@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC="">
+<html>
+
+{% include "head.html" %}
+
+<body>
+
+{% include "nav.html" %}
+
+<div id="task-edit-page" class="page-wrapper">
+
+    {% include "menu.html" %}
+
+    <div class="page container">
+        <h1>Edit</h1>
+        <form action="task/edit/{{ task.id }}" method="post">
+            <div class='form-group'>
+                <label>Description</label>
+                <input class='form-control' name='description' value="{{ task.description }}" />
+            </div>
+            <div class='form-group'>
+                <label>Duration</label>
+                <input class='form-control' name='duration' value="{{ task.duration }}" />
+            </div>
+            <div class='form-group'>
+                <label>Labels</label>
+                <input class='form-control' name='labels' value="{{ task.labels_as_string }}" />
+            </div>
+            <div class='form-group'>
+                <label>Start date (YYYY-MM-DD HH:MM) (Optional)</label>
+                <input class='form-control' name='start_date' value="{{ task.start_date_string }}" />
+            </div>
+            <input class="btn" type="submit"/>
+        </form>
+        <form action="task/delete/{{ task.id}}" method="post">
+            <input class="btn btn-warning" onclick="return confirm('Are you sure?');" type="submit" value="Delete"/>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
