@@ -1,10 +1,9 @@
 $(function() {
 
-    var taskBeingEdited = false;
-
     if ($('#index-page').length) {
         saveTasksUpdates();
         highlightFirstItem();
+        setupTimer();
         sortable('ul#todo, ul#queued, ul#done', {
             connectWith: '.connected'
         })[0].addEventListener('sortupdate', saveTasksUpdates);
@@ -93,6 +92,35 @@ $(function() {
             for (var i = 0; i < maxNLables - nItems; i++) {
                 $list.append('<li>&nbsp;</li>');
             }
+        });
+    }
+
+    function setupTimer() {
+        var started = false,
+            $clock = $('#timer span'),
+            $startStop = $('#timer #start-btn'),
+            CHECK_EVERY = 1000,  // 1 second.
+            startTime,
+            timer;
+
+        function getMinutesElapsed() {
+            var delta = Date.now() - startTime;
+            // Milliseconds to minutes.
+            return Math.floor(delta / 60000);
+        }
+
+        $startStop.click(function() {
+            if (started) {
+                $startStop.html('Start');
+                clearInterval(timer);
+            } else {
+                $startStop.html('Stop');
+                startTime = Date.now();
+                timer = setInterval(function() {
+                    $clock.html("Min: " + getMinutesElapsed());
+                }, CHECK_EVERY);
+            }
+            started = !started;
         });
     }
 
