@@ -96,32 +96,39 @@ $(function() {
     }
 
     function setupTimer() {
-        var started = false,
+        var startTime = window.localStorage.getItem('swim-start-time'),
             $clock = $('#timer span'),
             $startStop = $('#timer #start-btn'),
-            CHECK_EVERY = 1000,  // 1 second.
-            startTime,
+            CHECK_EVERY = 1000,
+            started = false,
             timer;
-
-        function getMinutesElapsed() {
-            var delta = Date.now() - startTime;
-            // Milliseconds to minutes.
-            return Math.floor(delta / 60000);
-        }
 
         $startStop.click(function() {
             if (started) {
                 $startStop.html('Start');
+                window.localStorage.removeItem('swim-start-time');
                 clearInterval(timer);
             } else {
                 $startStop.html('Stop');
-                startTime = Date.now();
+                startTime = startTime ? startTime : Date.now();
+                window.localStorage.setItem('swim-start-time', startTime);
                 timer = setInterval(function() {
-                    $clock.html("Min: " + getMinutesElapsed());
+                    $clock.html("Min: " + getMinutesElapsed(startTime));
                 }, CHECK_EVERY);
             }
             started = !started;
         });
+
+        // LocalStorage saves "undefined" as a string, not a JS value.
+        if (startTime) {
+            $startStop.trigger('click');
+        }
+    }
+
+    function getMinutesElapsed(startTime) {
+        var delta = Date.now() - parseInt(startTime);
+        // Milliseconds to minutes.
+        return Math.floor(delta / 60000);
     }
 
     function highlightFirstItem() {
