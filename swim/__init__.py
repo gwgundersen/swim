@@ -54,7 +54,7 @@ from swim import endpoints
 app.register_blueprint(endpoints.auth_blueprint)
 app.register_blueprint(endpoints.index_blueprint)
 app.register_blueprint(endpoints.task_blueprint)
-app.register_blueprint(endpoints.overview_blueprint)
+app.register_blueprint(endpoints.report_blueprint)
 
 
 """ Login session management

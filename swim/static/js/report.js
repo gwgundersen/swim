@@ -13,6 +13,19 @@ window.SWIM.visualize = function (series, days) {
             tickmarkPlacement: 'on',
             title: {
                 enabled: false
+            },
+            labels: {
+                formatter: function() {
+                    var dayAsInt = new Date(this.value).getDay(),
+                        dayAsName = [
+                            'Sun', 'Mon', 'Tue', 'Wed',
+                            'Thu', 'Fri', 'Sat'][dayAsInt],
+                        date,
+                        parts;
+                    parts = this.value.split('-');
+                    date = parts[1] + '/' + parts[2];
+                    return dayAsName + ' (' + date + ')';
+                }
             }
         },
         yAxis: {
@@ -22,7 +35,7 @@ window.SWIM.visualize = function (series, days) {
         },
         tooltip: {
             split: true,
-            valueSuffix: ' millions'
+            valueSuffix: ' hours'
         },
         plotOptions: {
             area: {

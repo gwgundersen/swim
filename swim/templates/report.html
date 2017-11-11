@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC="">
+<html>
+
+{% include "head.html" %}
+
+<body>
+
+{% include "nav.html" %}
+
+<script src="static/js/highcharts.js"></script>
+<script src="static/js/report.js"></script>
+
+<div id="overview-page" class="page-wrapper">
+
+    {% include "menu.html" %}
+
+    <div class="page container">
+        <div>
+            <h2>Statistics</h2>
+            <table class="table">
+                <tr>
+                    <td>Total hours</td>
+                    <td>{{ report.total_hrs }}</td>
+                </tr>
+                <tr>
+                    <td>Average hours per day</td>
+                    <td>{{ report.hrs_day }}</td>
+                </tr>
+                <tr>
+                    <td>Median hours per day</td>
+                    <td>{{ report.median_hrs }}</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <h2>Subtotals</h2>
+            <table class="table">
+                {% for label, subtotal in report.label_subtotals.items() %}
+                    <tr>
+                        <td>{{ label }}</td>
+                        <td>{{ subtotal }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div id="visualization">
+        </div>
+    </div>
+    <script>
+        window.SWIM.visualize({{ series|safe }}, {{ days|safe }});
+    </script>
+</div>
+
+</body>
+</html>
