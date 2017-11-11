@@ -24,8 +24,8 @@ SWIM.createStackedChart = function(series, days) {
                 formatter: function () {
                     var dayAsInt = new Date(this.value).getDay(),
                         dayAsName = [
-                            'Sun', 'Mon', 'Tue', 'Wed',
-                            'Thu', 'Fri', 'Sat'][dayAsInt],
+                            'Mon', 'Tue', 'Wed',
+                            'Thu', 'Fri', 'Sat', 'Sun'][dayAsInt],
                         date,
                         parts;
                     parts = this.value.split('-');
