@@ -38,7 +38,6 @@ $(function() {
             }
         });
 
-        debugger;
         updateTimesAndPercentages(updates);
         highlightFirstItem();
     }
