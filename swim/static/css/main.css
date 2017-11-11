@@ -142,6 +142,9 @@ h6 {
 #auth-page input {
   margin-bottom: 10px;
 }
+#report-page #stats {
+  margin-top: 20px;
+}
 /* Plugin overrides.
  * ----------------- */
 .sortable-dragging {

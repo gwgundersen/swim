@@ -1,7 +1,13 @@
 window.SWIM = {};
 
-window.SWIM.visualize = function (series, days) {
-    Highcharts.chart('visualization', {
+SWIM.visualize = function(stackedSeries, days, pieSeries) {
+    SWIM.createStackedChart(stackedSeries, days);
+    SWIM.createPieChart(pieSeries);
+};
+
+
+SWIM.createStackedChart = function(series, days) {
+    Highcharts.chart('stacked-chart', {
         chart: {
             type: 'area'
         },
@@ -15,7 +21,7 @@ window.SWIM.visualize = function (series, days) {
                 enabled: false
             },
             labels: {
-                formatter: function() {
+                formatter: function () {
                     var dayAsInt = new Date(this.value).getDay(),
                         dayAsName = [
                             'Sun', 'Mon', 'Tue', 'Wed',
@@ -50,4 +56,42 @@ window.SWIM.visualize = function (series, days) {
         },
         series: series
     });
-};
+}
+
+
+SWIM.createPieChart = function(series) {
+    Highcharts.chart('pie-chart', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Time spent by category'
+        },
+        tooltip: {
+            formatter: function() {
+                var p = this.point;
+                return '<strong>' + p.name + ':</strong> '
+                    + p.y.toFixed(1) + ' hrs, '
+                    + p.percentage.toFixed(1) + '%';
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Labels',
+            colorByPoint: true,
+            data: series
+        }]
+    });
+}
