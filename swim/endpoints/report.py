@@ -60,7 +60,7 @@ def render_everyday_report():
         .join(models.label_to_task)\
         .join(models.Label)\
         .filter_by(name='ka_math')\
-        .all()
+        .distinct()
 
     now = datetime.datetime.now()
     start = datetime.date(now.year, 01, 01)
