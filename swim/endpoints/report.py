@@ -56,15 +56,18 @@ def render_report():
 @report_blueprint.route('/everyday', methods=['GET'])
 @login_required
 def render_everyday_report():
+    now = datetime.datetime.now()
+    start = datetime.date(now.year, 01, 01)
+    next_year = datetime.date(now.year+1, 01, 01)
+    days_so_far = (now.date() - start).days
+
     tasks = db.session.query(models.Task)\
         .join(models.label_to_task)\
         .join(models.Label)\
         .filter_by(name='ka_math')\
+        .filter(models.Task.date_completed >= start)\
+        .filter(models.Task.date_completed < next_year)\
         .distinct()
-
-    now = datetime.datetime.now()
-    start = datetime.date(now.year, 01, 01)
-    days_so_far = (now.date() - start).days
 
     total_mins = sum([t.duration for t in tasks])
     total_hrs = round(total_mins / 60.0)
