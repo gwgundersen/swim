@@ -145,6 +145,9 @@ h6 {
 #report-page #stats {
   margin-top: 20px;
 }
+#everyday-page table {
+  margin-top: 20px;
+}
 /* Plugin overrides.
  * ----------------- */
 .sortable-dragging {
