@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC="">
+<html>
+
+{% include "head.html" %}
+
+<body>
+
+{% include "nav.html" %}
+
+<script src="static/js/highcharts.js"></script>
+<script src="static/js/report.js"></script>
+
+<div id="everyday-page" class="page-wrapper">
+
+    {% include "menu.html" %}
+
+    <div class="page container">
+        <p><em>Everyday</em></p>
+        <div><strong>Days so far:</strong> {{ days_so_far }}</div>
+        <div><strong>Total hours:</strong> {{ total_hrs }}</div>
+    </div>
+</div>
+
+</body>
+</html>

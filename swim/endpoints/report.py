@@ -53,6 +53,25 @@ def render_report():
                            pieSeries=json.dumps(pieSeries),
                            stats=stats)
 
+@report_blueprint.route('/everyday', methods=['GET'])
+@login_required
+def render_everyday_report():
+    tasks = db.session.query(models.Task)\
+        .join(models.label_to_task)\
+        .join(models.Label)\
+        .filter_by(name='personal')\
+        .all()
+
+    now = datetime.datetime.now()
+    start = datetime.date(now.year, 01, 01)
+    days_so_far = (now.date() - start).days
+
+    total_mins = sum([t.duration for t in tasks])
+    total_hrs = round(total_mins / 60.0)
+
+    return render_template('everyday.html', tasks=tasks, total_hrs=total_hrs,
+                           days_so_far=days_so_far)
+
 
 def _get_all_data(date1, date2):
     """Return data for tasks within the range between date1 and date2.
