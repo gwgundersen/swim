@@ -59,7 +59,7 @@ def render_everyday_report():
     tasks = db.session.query(models.Task)\
         .join(models.label_to_task)\
         .join(models.Label)\
-        .filter_by(name='personal')\
+        .filter_by(name='ka_math')\
         .all()
 
     now = datetime.datetime.now()
