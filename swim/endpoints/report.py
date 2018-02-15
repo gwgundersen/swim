@@ -72,7 +72,7 @@ def render_everyday_report():
     total_mins = sum([t.duration for t in tasks])
     total_hrs = round(total_mins / 60.0)
 
-    return render_template('everyday.html', tasks=tasks, total_hrs=total_hrs,
+    return render_template('everyday.html', total_hrs=total_hrs,
                            days_so_far=days_so_far)
 
 
