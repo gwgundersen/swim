@@ -107,18 +107,28 @@ h6 {
   padding-left: 5px;
   color: #444;
 }
-#index-page ul.connected li.research,
-#index-page ul.connected li.coursework,
-#index-page ul.connected li.development,
-#index-page ul.connected li.ka_math {
+#index-page ul.connected li.research {
   background-color: #f0fff0;
   border-top: 1px solid #7abe7b;
   border-left: 1px solid #7abe7b;
   border-right: 1px solid #7abe7b;
   border-bottom: 1px solid #7abe7b;
 }
+#index-page ul.connected li.coursework,
+#index-page ul.connected li.development,
+#index-page ul.connected li.ka_math,
+#index-page ul.connected li.pti {
+  background-color: #fff8eb;
+  border-top: 1px solid #e8aa34;
+  border-left: 1px solid #e8aa34;
+  border-right: 1px solid #e8aa34;
+  border-bottom: 1px solid #e8aa34;
+}
+#index-page ul.connected li.side_projects,
 #index-page ul.connected li.yak_shaving,
-#index-page ul.connected li.pti,
+#index-page ul.connected li.personal,
+#index-page ul.connected li.rest,
+#index-page ul.connected li.health,
 #index-page ul.connected li.teaching,
 #index-page ul.connected li.hunt {
   background-color: #fee6e6;
@@ -126,16 +136,6 @@ h6 {
   border-left: 1px solid #fd4953;
   border-right: 1px solid #fd4953;
   border-bottom: 1px solid #fd4953;
-}
-#index-page ul.connected li.side_projects,
-#index-page ul.connected li.personal,
-#index-page ul.connected li.rest,
-#index-page ul.connected li.health {
-  background-color: #fff8eb;
-  border-top: 1px solid #e8aa34;
-  border-left: 1px solid #e8aa34;
-  border-right: 1px solid #e8aa34;
-  border-bottom: 1px solid #e8aa34;
 }
 #index-page ul.connected li.upcoming {
   font-weight: bold;

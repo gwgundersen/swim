@@ -121,10 +121,8 @@ h1, h2, h3, h4, h5, h6 {
         color: #444;
       }
 
-      &.research,
-      &.coursework,
-      &.development,
-      &.ka_math {
+      // Strictly positive.
+      &.research {
         background-color: #f0fff0;
         border-top: 1px solid #7abe7b;
         border-left: 1px solid #7abe7b;
@@ -132,8 +130,23 @@ h1, h2, h3, h4, h5, h6 {
         border-bottom: 1px solid #7abe7b;
       }
 
+      &.coursework,
+      &.development,
+      &.ka_math,
+      &.pti {
+        background-color: #fff8eb;
+        border-top: 1px solid #e8aa34;
+        border-left: 1px solid #e8aa34;
+        border-right: 1px solid #e8aa34;
+        border-bottom: 1px solid #e8aa34;
+      }
+
+      // Strictly checking boxes.
+      &.side_projects,
       &.yak_shaving,
-      &.pti,
+      &.personal,
+      &.rest,
+      &.health,
       &.teaching,
       &.hunt {
         background-color: #fee6e6;
@@ -141,17 +154,6 @@ h1, h2, h3, h4, h5, h6 {
         border-left: 1px solid #fd4953;
         border-right: 1px solid #fd4953;
         border-bottom: 1px solid #fd4953;
-      }
-
-      &.side_projects,
-      &.personal,
-      &.rest,
-      &.health{
-        background-color: #fff8eb;
-        border-top: 1px solid #e8aa34;
-        border-left: 1px solid #e8aa34;
-        border-right: 1px solid #e8aa34;
-        border-bottom: 1px solid #e8aa34;
       }
     }
 
