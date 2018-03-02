@@ -15,13 +15,15 @@
         <form action="task/update" method="post">
             <div class="row">
                 <div class="col-md-4">
-                    <h2>Todo</h2>
-                    <div class="total-time"></div>
-                    <ul class="label-pcts"></ul>
+                    <h2>Todo (<span class="total-time"></span>)</h2>
+                    <!--<ul class="label-pcts"></ul>-->
                     <ul class="list-unstyled connected" id="todo">
                         {% for task in todo %}
                             {% set css_class = 'upcoming' if task.start_date else '' %}
-                            <li name="{{ task.id }}" class="{{ css_class }}">
+                            <li name="{{ task.id }}"
+                                class="{{ css_class }} {{ task.label.name }}"
+                                style="min-height: {{ task.duration / 2 }}px;"
+                            >
                                 <span class="description">{{ task.description }}</span>
                                 <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
                                 <span class="labels">{{ task.labels_as_string }}</span>
@@ -31,13 +33,15 @@
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h2>Queued</h2>
-                    <div class="total-time"></div>
-                    <ul class="label-pcts"></ul>
+                    <h2>Queued (<span class="total-time"></span>)</h2>
+                    <!--<ul class="label-pcts"></ul>-->
                     <ul class="list-unstyled connected" id="queued">
                         {% for task in queued %}
                             {% set css_class = 'upcoming' if task.start_date else '' %}
-                            <li name="{{ task.id }}" class="{{ css_class }}">
+                            <li name="{{ task.id }}"
+                                class="{{ css_class }} {{ task.label.name }}"
+                                style="min-height: {{ task.duration / 2 }}px;"
+                            >
                                 <span class="description">{{ task.description }}</span>
                                 <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
                                 <span class="labels">{{ task.labels_as_string }}</span>
@@ -47,13 +51,15 @@
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h2>Done</h2>
-                    <div class="total-time"></div>
-                    <ul class="label-pcts"></ul>
+                    <h2>Done (<span class="total-time"></span>)</h2>
+                    <!--<ul class="label-pcts"></ul>-->
                     <ul class="list-unstyled connected" id="done">
                         {% for task in done %}
                             {% set css_class = 'upcoming' if task.start_date else '' %}
-                            <li name="{{ task.id }}" class="{{ css_class }}">
+                            <li name="{{ task.id }}"
+                                class="{{ css_class }} {{ task.label.name }}"
+                                style="min-height: {{ task.duration / 2 }}px;"
+                            >
                                 <span class="description">{{ task.description }}</span>
                                 <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
                                 <span class="labels">{{ task.labels_as_string }}</span>

@@ -30,6 +30,24 @@ h6 {
   margin-top: 0;
   border-bottom: 2px solid #333;
 }
+.btn {
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+.btn.btn-primary {
+  background-color: #888;
+}
+.btn.btn-primary:active,
+.btn.btn-primary:hover {
+  background-color: #666;
+}
+.btn.btn-info {
+  background-color: #c4151e;
+}
+.btn.btn-info:active,
+.btn.btn-info:hover {
+  background-color: #c4151e;
+}
 /* Structural elements.
  * -------------------- */
 #nav {
@@ -49,7 +67,7 @@ h6 {
   margin-top: 10px;
 }
 #nav p {
-  margin: 5px 0;
+  margin: 2px 0;
 }
 #nav p a {
   font-family: 'Roboto';
@@ -57,47 +75,67 @@ h6 {
 /* Content that spans pages.
  * ------------------------- */
 .page {
-  margin: 30px auto;
+  margin: 15px auto;
 }
 #menu {
-  padding: 15px 0;
+  padding: 5px 0;
   background-color: #eee;
 }
 /* Pages.
  * ------ */
 #index-page h2 {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   border: none;
+  margin-bottom: 20px;
 }
 #index-page ul.connected {
   /* Required so that users can drag items into empty lists. */
   min-height: 40px;
-  border-bottom: 1px solid #eee;
 }
 #index-page ul.connected li {
   background-color: #f9f9f9;
   min-height: 40px;
+  margin-bottom: 1px;
   padding: 10px;
   border-top: 1px solid #eee;
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 #index-page ul.connected li .edit-btn {
   padding-left: 5px;
-  color: #1976D2;
+  color: #444;
 }
-#index-page ul.connected#todo {
-  border-bottom: 1px solid #faafa6;
+#index-page ul.connected li.research,
+#index-page ul.connected li.coursework,
+#index-page ul.connected li.development,
+#index-page ul.connected li.ka_math {
+  background-color: #f0fff0;
+  border-top: 1px solid #7abe7b;
+  border-left: 1px solid #7abe7b;
+  border-right: 1px solid #7abe7b;
+  border-bottom: 1px solid #7abe7b;
 }
-#index-page ul.connected#todo li {
-  background-color: #fddeda;
-  border-top: 1px solid #faafa6;
-  border-left: 1px solid #faafa6;
-  border-right: 1px solid #faafa6;
+#index-page ul.connected li.yak_shaving,
+#index-page ul.connected li.pti,
+#index-page ul.connected li.teaching,
+#index-page ul.connected li.hunt {
+  background-color: #fee6e6;
+  border-top: 1px solid #fd4953;
+  border-left: 1px solid #fd4953;
+  border-right: 1px solid #fd4953;
+  border-bottom: 1px solid #fd4953;
 }
-#index-page ul.connected#todo li.first {
-  background-color: #faafa6;
+#index-page ul.connected li.side_projects,
+#index-page ul.connected li.personal,
+#index-page ul.connected li.rest,
+#index-page ul.connected li.health {
+  background-color: #fff8eb;
+  border-top: 1px solid #e8aa34;
+  border-left: 1px solid #e8aa34;
+  border-right: 1px solid #e8aa34;
+  border-bottom: 1px solid #e8aa34;
 }
 #index-page ul.connected li.upcoming {
   font-weight: bold;
@@ -120,7 +158,7 @@ h6 {
   margin-top: 10px;
 }
 #index-page #timer #time {
-  color: red;
+  color: #c4151e;
   font-size: 20px;
   position: relative;
   top: 2px;

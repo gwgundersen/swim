@@ -32,6 +32,25 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 2px solid #333;
 }
 
+.btn {
+  padding: 4px 8px;
+  border-radius: 3px;
+  &.btn-primary {
+    background-color: #888;
+    &:active,
+    &:hover {
+      background-color: #666;
+    }
+  }
+  &.btn-info {
+    background-color: @color-red;
+    &:active,
+    &:hover {
+      background-color: @color-red;
+    }
+  }
+}
+
 /* Structural elements.
  * -------------------- */
 #nav {
@@ -52,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   p {
-    margin: 5px 0;
+    margin: 2px 0;
 
     a {
       font-family: @font-family-accent;
@@ -63,11 +82,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Content that spans pages.
  * ------------------------- */
 .page {
-  margin: 30px auto;
+  margin: 15px auto;
 }
 
 #menu {
-  padding: 15px 0;
+  padding: 5px 0;
   background-color: #eee;
 }
 
@@ -76,44 +95,80 @@ h1, h2, h3, h4, h5, h6 {
 #index-page {
 
   h2 {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     border: none;
+    margin-bottom: 20px;
   }
 
   ul.connected {
     /* Required so that users can drag items into empty lists. */
     min-height: @dim-win-height;
-    border-bottom: 1px solid #eee;
+    //border-bottom: 1px solid #eee;
     
     li {
       background-color: #f9f9f9;
       min-height: @dim-win-height;
+      margin-bottom: 1px;
       padding: 10px;
       border-top: 1px solid #eee;
       border-left: 1px solid #eee;
       border-right: 1px solid #eee;
+      border-bottom: 1px solid #eee;
 
       .edit-btn {
         padding-left: 5px;
-        color: @color-blue;
+        color: #444;
+      }
+
+      &.research,
+      &.coursework,
+      &.development,
+      &.ka_math {
+        background-color: #f0fff0;
+        border-top: 1px solid #7abe7b;
+        border-left: 1px solid #7abe7b;
+        border-right: 1px solid #7abe7b;
+        border-bottom: 1px solid #7abe7b;
+      }
+
+      &.yak_shaving,
+      &.pti,
+      &.teaching,
+      &.hunt {
+        background-color: #fee6e6;
+        border-top: 1px solid #fd4953;
+        border-left: 1px solid #fd4953;
+        border-right: 1px solid #fd4953;
+        border-bottom: 1px solid #fd4953;
+      }
+
+      &.side_projects,
+      &.personal,
+      &.rest,
+      &.health{
+        background-color: #fff8eb;
+        border-top: 1px solid #e8aa34;
+        border-left: 1px solid #e8aa34;
+        border-right: 1px solid #e8aa34;
+        border-bottom: 1px solid #e8aa34;
       }
     }
 
-    &#todo {
-      border-bottom: 1px solid @color-pink;
-
-      li {
-        background-color: #fddeda;
-        border-top: 1px solid @color-pink;
-        border-left: 1px solid @color-pink;
-        border-right: 1px solid @color-pink;
-
-        &.first {
-          background-color: @color-pink;
-        }
-      }
-    }
+    //&#todo {
+    //
+    //  li {
+    //    background-color: #fddeda;
+    //    border-top: 1px solid @color-pink;
+    //    border-left: 1px solid @color-pink;
+    //    border-right: 1px solid @color-pink;
+    //    border-bottom: 1px solid @color-pink;
+    //
+    //    //&.first {
+    //    //  background-color: @color-pink;
+    //    //}
+    //  }
+    //}
 
     li.upcoming {
       font-weight: bold;
@@ -147,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {
 
   #timer {
     #time {
-      color: red;
+      color: @color-red;
       font-size: 20px;
       position: relative;
       top: 2px;

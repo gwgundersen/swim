@@ -39,6 +39,12 @@ class Task(db.Model):
         self.labels = labels
 
     @property
+    def label(self):
+        """Return the first (only?) label.
+        """
+        return self.labels[0]
+
+    @property
     def labels_as_string(self):
         """Return labels formatted as a comma-separated list for viewing.
         """
