@@ -91,11 +91,11 @@ h6 {
 }
 #index-page ul.connected {
   /* Required so that users can drag items into empty lists. */
-  min-height: 40px;
+  min-height: 20px !important;
 }
 #index-page ul.connected li {
   background-color: #f9f9f9;
-  min-height: 40px;
+  min-height: 20px !important;
   margin-bottom: 1px;
   padding: 10px;
   border-top: 1px solid #eee;
@@ -194,7 +194,7 @@ h6 {
 .sortable-placeholder {
   background-color: white !important;
   border: 2px dotted #ccc !important;
-  height: 40px;
+  height: 20px !important;
 }
 .pagination > .active > a,
 .pagination > .active > a:focus,

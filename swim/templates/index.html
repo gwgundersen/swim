@@ -20,13 +20,13 @@
                     <ul class="list-unstyled connected" id="todo">
                         {% for task in todo %}
                             {% set css_class = 'upcoming' if task.start_date else '' %}
+                            {% set height = task.duration | string + 'px' if task.duration > 40 else 'auto' %}
                             <li name="{{ task.id }}"
-                                class="{{ css_class }} {{ task.label.name }}"
-                                style="min-height: {{ task.duration / 2 }}px;"
-                            >
+                                class="{{css_class}} {{task.label.name}}"
+                                style="height: {{ height }};">
                                 <span class="description">{{ task.description }}</span>
                                 <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
-                                <span class="labels">{{ task.labels_as_string }}</span>
+                                <span class="labels">{{ task.label.name }}</span>
                                 <a class="edit-btn" href="task/edit/{{ task.id }}">Edit</a>
                             </li>
                         {% endfor %}
@@ -38,9 +38,10 @@
                     <ul class="list-unstyled connected" id="queued">
                         {% for task in queued %}
                             {% set css_class = 'upcoming' if task.start_date else '' %}
+                            {% set height = task.duration | string + 'px' if task.duration > 40 else 'auto' %}
                             <li name="{{ task.id }}"
-                                class="{{ css_class }} {{ task.label.name }}"
-                                style="min-height: {{ task.duration / 2 }}px;"
+                                class="{{css_class}} {{task.label.name}}"
+                                style="height: {{ height }};"
                             >
                                 <span class="description">{{ task.description }}</span>
                                 <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
@@ -56,9 +57,10 @@
                     <ul class="list-unstyled connected" id="done">
                         {% for task in done %}
                             {% set css_class = 'upcoming' if task.start_date else '' %}
+                            {% set height = task.duration | string + 'px' if task.duration > 40 else 'auto' %}
                             <li name="{{ task.id }}"
-                                class="{{ css_class }} {{ task.label.name }}"
-                                style="min-height: {{ task.duration / 2 }}px;"
+                                class="{{css_class}} {{task.label.name}}"
+                                style="height: {{ height }};"
                             >
                                 <span class="description">{{ task.description }}</span>
                                 <span>(</span><span class="duration">{{ task.duration }}</span><span>)</span>
