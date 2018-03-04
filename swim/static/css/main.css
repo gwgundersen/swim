@@ -137,8 +137,8 @@ h6 {
   border-right: 1px solid #fd4953;
   border-bottom: 1px solid #fd4953;
 }
-#index-page ul.connected li.upcoming {
-  font-weight: bold;
+#index-page ul.connected#done {
+  opacity: 0.6;
 }
 #index-page ul.connected#done li span {
   text-decoration: line-through;
