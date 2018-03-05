@@ -162,8 +162,6 @@ def _get_most_recent_start_of_week():
     """Return the year, month, and day of the most recent beginning of the
     week, i.e. the most recent Monday.
     """
-    today = datetime.datetime.now()
-    idx = (today.weekday() + 1) % 7
-    # First day of the week is really Monday.
-    mon = today - datetime.timedelta(idx-1)
+    today = datetime.date.today()
+    mon = today - datetime.timedelta(days=today.weekday())
     return mon.year, mon.month, mon.day
