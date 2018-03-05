@@ -1,5 +1,20 @@
 window.SWIM = {};
 
+SWIM.colorMap = {
+    'research'     : '#3cb44b',
+    'coursework'   : '#ffe119',
+    'development'  : '#0082c8',
+    'side_projects': '#f58231',
+    'yak_shaving'  : '#911eb4',
+    'personal'     : '#46f0f0',
+    'pti'          : '#f032e6',
+    'teaching'     : '#d2f53c',
+    'ka_math'      : '#fabebe',
+    'rest'         : '#008080',
+    'hunt'         : '#e6beff',
+    'health'       : '#aa6e28'
+};
+
 SWIM.visualize = function(stackedSeries, days, pieSeries) {
     SWIM.createStackedChart(stackedSeries, days);
     SWIM.createPieChart(pieSeries);
@@ -7,6 +22,7 @@ SWIM.visualize = function(stackedSeries, days, pieSeries) {
 
 
 SWIM.createStackedChart = function(series, days) {
+    series = assignColors(series);
     Highcharts.chart('stacked-chart', {
         chart: {
             type: 'area'
@@ -60,6 +76,7 @@ SWIM.createStackedChart = function(series, days) {
 
 
 SWIM.createPieChart = function(series) {
+    series = assignColors(series);
     Highcharts.chart('pie-chart', {
         chart: {
             plotBackgroundColor: null,
@@ -94,4 +111,11 @@ SWIM.createPieChart = function(series) {
             data: series
         }]
     });
+};
+
+function assignColors(series) {
+    series.forEach(function(obj, i) {
+        obj.color = SWIM.colorMap[obj.name];
+    });
+    return series;
 }
