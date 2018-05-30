@@ -56,10 +56,12 @@ def render_report():
 @report_blueprint.route('/everyday', methods=['GET'])
 @login_required
 def render_everyday_report():
-    now = datetime.datetime.now()
-    start = datetime.date(now.year, 01, 01)
-    next_year = datetime.date(now.year+1, 01, 01)
-    days_so_far = (now.date() - start).days
+    DAYS_IN_YEAR = 365
+    now          = datetime.datetime.now()
+    start        = datetime.date(now.year, 01, 01)
+    next_year    = datetime.date(now.year+1, 01, 01)
+    days_so_far  = (now.date() - start).days
+    days_left    = DAYS_IN_YEAR - days_so_far
 
     tasks = db.session.query(models.Task)\
         .join(models.label_to_task)\
@@ -69,11 +71,18 @@ def render_everyday_report():
         .filter(models.Task.date_completed < next_year)\
         .distinct()
 
-    total_mins = sum([t.duration for t in tasks])
-    total_hrs = round(total_mins / 60.0)
+    total_mins      = sum([t.duration for t in tasks])
+    total_hrs       = round(total_mins / 60.0)
+    hours_behind    = days_so_far - total_hrs
+    if hours_behind <= 0:
+        catchup_min_day = 0
+    else:
+        catchup_min_day = round(hours_behind / days_left, 1) * 60
 
-    return render_template('everyday.html', total_hrs=total_hrs,
-                           days_so_far=days_so_far)
+    return render_template('everyday.html',
+                           total_hrs=total_hrs,
+                           days_so_far=days_so_far,
+                           catchup_min_day=catchup_min_day)
 
 
 def _get_all_data(date1, date2):
