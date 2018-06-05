@@ -82,6 +82,7 @@ def render_everyday_report():
     return render_template('everyday.html',
                            total_hrs=total_hrs,
                            days_so_far=days_so_far,
+                           hours_behind=hours_behind,
                            catchup_min_day=catchup_min_day)
 
 
