@@ -77,7 +77,7 @@ def render_everyday_report():
     if hours_behind <= 0:
         catchup_min_day = 0
     else:
-        catchup_min_day = round(hours_behind / days_left, 1) * 60
+        catchup_min_day = round((hours_behind * 60) / days_left, 1)
 
     return render_template('everyday.html',
                            total_hrs=total_hrs,
