@@ -122,7 +122,7 @@ def edit_tasks(id_):
         description, duration, labels, start_date, date_completed = \
             _get_task_properties_from_request()
 
-        if date_completed.date() > task.date_created:
+        if date_completed and date_completed.date() > task.date_created:
             date_completed = task.date_created
 
         if not description:
