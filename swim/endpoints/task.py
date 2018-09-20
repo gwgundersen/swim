@@ -68,7 +68,7 @@ def render_create_tasks_page():
 def create_task():
     """Create new task.
     """
-    description, duration, labels, start_date = \
+    description, duration, labels, start_date, _ = \
         _get_task_properties_from_request()
     if not description:
         return redirect(url_for('task.create_task'))
@@ -119,14 +119,20 @@ def edit_tasks(id_):
         return render_template('task_edit.html',
                                task=task)
     else:
-        description, duration, labels, start_date = \
+        description, duration, labels, start_date, date_completed = \
             _get_task_properties_from_request()
+
+        if date_completed.date() > task.date_created:
+            date_completed = task.date_created
+
         if not description:
             return redirect(url_for('task.edit_tasks'))
+
         task.description = description
         task.duration = duration
         task.labels = labels
         task.start_date = start_date
+        task.date_completed = date_completed
         db.session.merge(task)
         db.session.commit()
     return redirect(url_for('index.render_index_page'))
@@ -215,8 +221,15 @@ def _get_task_properties_from_request():
     duration = int(duration) if duration else 30
     labels = _get_or_create_labels(request.form.get('labels'))
     start_date = request.form.get('start_date', None)
+    date_completed = request.form.get('date_completed', None)
+
     if start_date:
-        start_date = datetime.datetime.strptime(start_date, "%Y-%m-%d %H:%M")
+        start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d %H:%M')
     if start_date == '':
         start_date = None
-    return description, duration, labels, start_date
+    if date_completed:
+        date_completed = datetime.datetime.strptime(date_completed, '%Y-%m-%d')
+    if date_completed == '':
+        date_completed = None
+
+    return description, duration, labels, start_date, date_completed
